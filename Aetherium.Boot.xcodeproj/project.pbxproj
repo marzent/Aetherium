@@ -1,0 +1,516 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		505E2F5D2A34771C00D2F992 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505E2F5C2A34771C00D2F992 /* main.cpp */; };
+		505E2F652A3477BF00D2F992 /* logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505E2F642A3477BF00D2F992 /* logging.cpp */; };
+		505E2F7A2A34A5FA00D2F992 /* boot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505E2F702A34A5FA00D2F992 /* boot.cpp */; };
+		505E2F7B2A34A5FA00D2F992 /* CoreCLR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505E2F762A34A5FA00D2F992 /* CoreCLR.cpp */; };
+		505E2F8F2A34C48C00D2F992 /* logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505E2F642A3477BF00D2F992 /* logging.cpp */; };
+		505E2F902A34C49600D2F992 /* boot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505E2F702A34A5FA00D2F992 /* boot.cpp */; };
+		505E2F912A34C49B00D2F992 /* CoreCLR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505E2F762A34A5FA00D2F992 /* CoreCLR.cpp */; };
+		505E2F942A34C64000D2F992 /* libnethost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505E2F932A34C64000D2F992 /* libnethost.a */; };
+		505E2F952A34C64000D2F992 /* libnethost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505E2F932A34C64000D2F992 /* libnethost.a */; };
+		50BF6C7E2A35C3DE00314C83 /* utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C7C2A35C3DE00314C83 /* utils.mm */; };
+		50BF6C7F2A35C3DE00314C83 /* utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C7C2A35C3DE00314C83 /* utils.mm */; };
+		50BF6C802A35C3DE00314C83 /* utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 50BF6C7D2A35C3DE00314C83 /* utils.hpp */; };
+		50BF6C832A35CE8600314C83 /* initialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C812A35CE8600314C83 /* initialize.cpp */; };
+		50BF6C842A35CE8600314C83 /* initialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C812A35CE8600314C83 /* initialize.cpp */; };
+		50BF6C852A35CE8600314C83 /* initialize.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 50BF6C822A35CE8600314C83 /* initialize.hpp */; };
+		50BF6C872A35CF4100314C83 /* lib_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C862A35CF4100314C83 /* lib_main.cpp */; };
+		50BF6C932A35D54D00314C83 /* format-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BF6C8F2A35D54D00314C83 /* format-inl.h */; };
+		50BF6C942A35D54D00314C83 /* core.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BF6C902A35D54D00314C83 /* core.h */; };
+		50BF6C952A35D54D00314C83 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50BF6C912A35D54D00314C83 /* libfmt.a */; };
+		50BF6C962A35D54D00314C83 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50BF6C912A35D54D00314C83 /* libfmt.a */; };
+		50BF6C972A35D54D00314C83 /* format.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BF6C922A35D54D00314C83 /* format.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		505E2F572A34771C00D2F992 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		505E2F592A34771C00D2F992 /* Aetherium.Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Aetherium.Test; sourceTree = BUILT_PRODUCTS_DIR; };
+		505E2F5C2A34771C00D2F992 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		505E2F632A3477BF00D2F992 /* logging.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = logging.hpp; sourceTree = "<group>"; };
+		505E2F642A3477BF00D2F992 /* logging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logging.cpp; sourceTree = "<group>"; };
+		505E2F672A34817500D2F992 /* Aetherium.Boot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aetherium.Boot.entitlements; sourceTree = "<group>"; };
+		505E2F702A34A5FA00D2F992 /* boot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = boot.cpp; sourceTree = "<group>"; };
+		505E2F722A34A5FA00D2F992 /* coreclr_delegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coreclr_delegates.h; sourceTree = "<group>"; };
+		505E2F732A34A5FA00D2F992 /* hostfxr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hostfxr.h; sourceTree = "<group>"; };
+		505E2F742A34A5FA00D2F992 /* boot.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = boot.hpp; sourceTree = "<group>"; };
+		505E2F752A34A5FA00D2F992 /* CoreCLR.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CoreCLR.hpp; sourceTree = "<group>"; };
+		505E2F762A34A5FA00D2F992 /* CoreCLR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoreCLR.cpp; sourceTree = "<group>"; };
+		505E2F792A34A5FA00D2F992 /* nethost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nethost.h; sourceTree = "<group>"; };
+		505E2F892A34C43900D2F992 /* libAetherium.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libAetherium.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		505E2F932A34C64000D2F992 /* libnethost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libnethost.a; sourceTree = "<group>"; };
+		50BF6C7C2A35C3DE00314C83 /* utils.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = utils.mm; sourceTree = "<group>"; };
+		50BF6C7D2A35C3DE00314C83 /* utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
+		50BF6C812A35CE8600314C83 /* initialize.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = initialize.cpp; sourceTree = "<group>"; };
+		50BF6C822A35CE8600314C83 /* initialize.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = initialize.hpp; sourceTree = "<group>"; };
+		50BF6C862A35CF4100314C83 /* lib_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lib_main.cpp; sourceTree = "<group>"; };
+		50BF6C8F2A35D54D00314C83 /* format-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "format-inl.h"; sourceTree = "<group>"; };
+		50BF6C902A35D54D00314C83 /* core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
+		50BF6C912A35D54D00314C83 /* libfmt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmt.a; sourceTree = "<group>"; };
+		50BF6C922A35D54D00314C83 /* format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = format.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		505E2F562A34771C00D2F992 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50BF6C952A35D54D00314C83 /* libfmt.a in Frameworks */,
+				505E2F942A34C64000D2F992 /* libnethost.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		505E2F872A34C43900D2F992 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50BF6C962A35D54D00314C83 /* libfmt.a in Frameworks */,
+				505E2F952A34C64000D2F992 /* libnethost.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		505E2F502A34771C00D2F992 = {
+			isa = PBXGroup;
+			children = (
+				505E2F5B2A34771C00D2F992 /* Aetherium.Boot */,
+				505E2F5A2A34771C00D2F992 /* Products */,
+				505E2F7E2A34B79D00D2F992 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		505E2F5A2A34771C00D2F992 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				505E2F592A34771C00D2F992 /* Aetherium.Test */,
+				505E2F892A34C43900D2F992 /* libAetherium.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		505E2F5B2A34771C00D2F992 /* Aetherium.Boot */ = {
+			isa = PBXGroup;
+			children = (
+				50BF6C8E2A35D54D00314C83 /* fmt */,
+				505E2F672A34817500D2F992 /* Aetherium.Boot.entitlements */,
+				505E2F5C2A34771C00D2F992 /* main.cpp */,
+				50BF6C862A35CF4100314C83 /* lib_main.cpp */,
+				50BF6C812A35CE8600314C83 /* initialize.cpp */,
+				50BF6C822A35CE8600314C83 /* initialize.hpp */,
+				50BF6C7C2A35C3DE00314C83 /* utils.mm */,
+				50BF6C7D2A35C3DE00314C83 /* utils.hpp */,
+				505E2F642A3477BF00D2F992 /* logging.cpp */,
+				505E2F632A3477BF00D2F992 /* logging.hpp */,
+				505E2F6F2A34A5FA00D2F992 /* CoreCLR */,
+			);
+			path = Aetherium.Boot;
+			sourceTree = "<group>";
+		};
+		505E2F6F2A34A5FA00D2F992 /* CoreCLR */ = {
+			isa = PBXGroup;
+			children = (
+				505E2F702A34A5FA00D2F992 /* boot.cpp */,
+				505E2F712A34A5FA00D2F992 /* core */,
+				505E2F742A34A5FA00D2F992 /* boot.hpp */,
+				505E2F752A34A5FA00D2F992 /* CoreCLR.hpp */,
+				505E2F762A34A5FA00D2F992 /* CoreCLR.cpp */,
+				505E2F772A34A5FA00D2F992 /* nethost */,
+			);
+			path = CoreCLR;
+			sourceTree = "<group>";
+		};
+		505E2F712A34A5FA00D2F992 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				505E2F722A34A5FA00D2F992 /* coreclr_delegates.h */,
+				505E2F732A34A5FA00D2F992 /* hostfxr.h */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		505E2F772A34A5FA00D2F992 /* nethost */ = {
+			isa = PBXGroup;
+			children = (
+				505E2F932A34C64000D2F992 /* libnethost.a */,
+				505E2F792A34A5FA00D2F992 /* nethost.h */,
+			);
+			path = nethost;
+			sourceTree = "<group>";
+		};
+		505E2F7E2A34B79D00D2F992 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50BF6C8E2A35D54D00314C83 /* fmt */ = {
+			isa = PBXGroup;
+			children = (
+				50BF6C8F2A35D54D00314C83 /* format-inl.h */,
+				50BF6C902A35D54D00314C83 /* core.h */,
+				50BF6C912A35D54D00314C83 /* libfmt.a */,
+				50BF6C922A35D54D00314C83 /* format.h */,
+			);
+			path = fmt;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		505E2F852A34C43900D2F992 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50BF6C942A35D54D00314C83 /* core.h in Headers */,
+				50BF6C852A35CE8600314C83 /* initialize.hpp in Headers */,
+				50BF6C802A35C3DE00314C83 /* utils.hpp in Headers */,
+				50BF6C932A35D54D00314C83 /* format-inl.h in Headers */,
+				50BF6C972A35D54D00314C83 /* format.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		505E2F582A34771C00D2F992 /* Aetherium.Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 505E2F602A34771C00D2F992 /* Build configuration list for PBXNativeTarget "Aetherium.Test" */;
+			buildPhases = (
+				505E2F552A34771C00D2F992 /* Sources */,
+				505E2F562A34771C00D2F992 /* Frameworks */,
+				505E2F572A34771C00D2F992 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Aetherium.Test;
+			productName = Aetherium.Boot;
+			productReference = 505E2F592A34771C00D2F992 /* Aetherium.Test */;
+			productType = "com.apple.product-type.tool";
+		};
+		505E2F882A34C43900D2F992 /* Aetherium */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 505E2F8A2A34C43900D2F992 /* Build configuration list for PBXNativeTarget "Aetherium" */;
+			buildPhases = (
+				505E2F852A34C43900D2F992 /* Headers */,
+				505E2F862A34C43900D2F992 /* Sources */,
+				505E2F872A34C43900D2F992 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Aetherium;
+			productName = Aetherium.Injector;
+			productReference = 505E2F892A34C43900D2F992 /* libAetherium.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		505E2F512A34771C00D2F992 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					505E2F582A34771C00D2F992 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					505E2F882A34C43900D2F992 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = 505E2F542A34771C00D2F992 /* Build configuration list for PBXProject "Aetherium.Boot" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 505E2F502A34771C00D2F992;
+			productRefGroup = 505E2F5A2A34771C00D2F992 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				505E2F582A34771C00D2F992 /* Aetherium.Test */,
+				505E2F882A34C43900D2F992 /* Aetherium */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		505E2F552A34771C00D2F992 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				505E2F5D2A34771C00D2F992 /* main.cpp in Sources */,
+				50BF6C832A35CE8600314C83 /* initialize.cpp in Sources */,
+				50BF6C7E2A35C3DE00314C83 /* utils.mm in Sources */,
+				505E2F652A3477BF00D2F992 /* logging.cpp in Sources */,
+				505E2F7B2A34A5FA00D2F992 /* CoreCLR.cpp in Sources */,
+				505E2F7A2A34A5FA00D2F992 /* boot.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		505E2F862A34C43900D2F992 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				505E2F912A34C49B00D2F992 /* CoreCLR.cpp in Sources */,
+				50BF6C842A35CE8600314C83 /* initialize.cpp in Sources */,
+				50BF6C7F2A35C3DE00314C83 /* utils.mm in Sources */,
+				505E2F902A34C49600D2F992 /* boot.cpp in Sources */,
+				505E2F8F2A34C48C00D2F992 /* logging.cpp in Sources */,
+				50BF6C872A35CF4100314C83 /* lib_main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		505E2F5E2A34771C00D2F992 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		505E2F5F2A34771C00D2F992 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		505E2F612A34771C00D2F992 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Aetherium.Boot/Aetherium.Boot.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TQJJTJ6364;
+				ENABLE_HARDENED_RUNTIME = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Aetherium.Boot/lib/CoreCLR/nethost",
+					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
+					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		505E2F622A34771C00D2F992 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Aetherium.Boot/Aetherium.Boot.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TQJJTJ6364;
+				ENABLE_HARDENED_RUNTIME = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Aetherium.Boot/lib/CoreCLR/nethost",
+					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
+					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		505E2F8B2A34C43900D2F992 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TQJJTJ6364;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
+					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		505E2F8C2A34C43900D2F992 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TQJJTJ6364;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
+					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		505E2F542A34771C00D2F992 /* Build configuration list for PBXProject "Aetherium.Boot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				505E2F5E2A34771C00D2F992 /* Debug */,
+				505E2F5F2A34771C00D2F992 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		505E2F602A34771C00D2F992 /* Build configuration list for PBXNativeTarget "Aetherium.Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				505E2F612A34771C00D2F992 /* Debug */,
+				505E2F622A34771C00D2F992 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		505E2F8A2A34C43900D2F992 /* Build configuration list for PBXNativeTarget "Aetherium" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				505E2F8B2A34C43900D2F992 /* Debug */,
+				505E2F8C2A34C43900D2F992 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 505E2F512A34771C00D2F992 /* Project object */;
+}
