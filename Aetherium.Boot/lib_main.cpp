@@ -6,6 +6,7 @@
 //
 
 #include "initialize.hpp"
+#include "utils.hpp"
 
 __attribute__((constructor))
 int lib_main(int argc, char **argv) {

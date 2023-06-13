@@ -31,6 +31,10 @@ int initialize(int argc, char **argv) {
 
     logging::I("Aetherium.Boot Injectable, (c) 2023 marzent (c) 2021 XIVLauncher Contributors");
     logging::I("Built at: " __DATE__ "@" __TIME__);
+    
+    const auto base_adress = utils::get_base_adress();
+    
+    logging::I("Executing {} with base adress {:#x}", executable_path, base_adress);
 
     const auto runtimeconfig_path = (aetherium_path / "bin" / "Aetherium.runtimeconfig.json").string();
     const auto module_path = (aetherium_path / "bin" / "Aetherium.dll").string();
@@ -44,20 +48,20 @@ int initialize(int argc, char **argv) {
         executable_path,
         runtimeconfig_path,
         module_path,
-        "Aetherium.Aetherium, Aetherium",
-        "EntryPoint",
+        "Aetherium.EntryPoint, Aetherium",
+        "Initialize",
         &entrypoint_vfn);
 
     if (result != 0)
         return result;
 
-    using custom_component_entry_point_fn = void (CORECLR_DELEGATE_CALLTYPE*)(void* ,int);
+    using custom_component_entry_point_fn = void (CORECLR_DELEGATE_CALLTYPE*)(const char*, vm_map_offset_t);
     const auto entrypoint_fn = reinterpret_cast<custom_component_entry_point_fn>(entrypoint_vfn);
 
     // ============================== Aetherium ==================================== //
 
     logging::I("Initializing Aetherium...");
-    entrypoint_fn((void*)"Hello from C#", 42);
+    entrypoint_fn(executable_path.c_str(), base_adress);
 
     logging::I("Done!");
 
