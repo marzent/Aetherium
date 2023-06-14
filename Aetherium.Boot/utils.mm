@@ -43,12 +43,20 @@ vm_map_offset_t utils::get_base_adress() {
 }
 
 void utils::showAlert(const char *message, const char *info, const char *buttonTitle) {
-    NSAlert *alert = [[NSAlert alloc] init];
-    if (message)
-        [alert setMessageText:[NSString stringWithUTF8String:message]];
-    if (info)
-        [alert setInformativeText:[NSString stringWithUTF8String:info]];
-    if (buttonTitle)
-        [alert addButtonWithTitle:[NSString stringWithUTF8String:buttonTitle]];
-    [alert runModal];
+    if (strcmp(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL), dispatch_queue_get_label(dispatch_get_main_queue())) == 0) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        if (message)
+            [alert setMessageText:[NSString stringWithUTF8String:message]];
+        if (info)
+            [alert setInformativeText:[NSString stringWithUTF8String:info]];
+        if (buttonTitle)
+            [alert addButtonWithTitle:[NSString stringWithUTF8String:buttonTitle]];
+        [alert runModal];
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            showAlert(message, info, buttonTitle);
+        });
+    }
 }
+
+
