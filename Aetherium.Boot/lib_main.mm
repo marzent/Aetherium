@@ -5,10 +5,12 @@
 //  Created by Marc-Aurel Zent on 11.06.23.
 //
 
+#import <Cocoa/Cocoa.h>
 #import <Metal/Metal.h>
 
 #include "initialize.hpp"
 #include "utils.hpp"
+#include "imgui_impl_osx.h"
 #include "imgui_impl_metal.h"
 
 __attribute__((constructor))
@@ -41,6 +43,32 @@ void ImGui_ImplMetal_RenderDrawData(ImDrawData* drawData, void* commandBuffer, v
 __attribute__((visibility("default")))
 void ImGui_ImplMetal_DeInit(void){
     ImGui_ImplMetal_Shutdown();
+}
+
+__attribute__((visibility("default")))
+bool ImGui_ImplMacOS_Init(void* view){
+    return ImGui_ImplOSX_Init((__bridge NSView*) view);
+}
+
+__attribute__((visibility("default")))
+void ImGui_ImplMacOS_DeInit(void){
+    ImGui_ImplOSX_Shutdown();
+}
+
+__attribute__((visibility("default")))
+void ImGui_ImplMacOS_NewFrame(void* view){
+    ImGui_ImplOSX_NewFrame((__bridge NSView*) view);
+}
+
+__attribute__((visibility("default")))
+void ImGui_ImplMacOS_NewViewportFrame(){
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+        {
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+        }
+    });
 }
 
 }

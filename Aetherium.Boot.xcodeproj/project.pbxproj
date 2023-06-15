@@ -35,6 +35,8 @@
 		505E2F912A34C49B00D2F992 /* CoreCLR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505E2F762A34A5FA00D2F992 /* CoreCLR.cpp */; };
 		505E2F942A34C64000D2F992 /* libnethost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505E2F932A34C64000D2F992 /* libnethost.a */; };
 		505E2F952A34C64000D2F992 /* libnethost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505E2F932A34C64000D2F992 /* libnethost.a */; };
+		5096B6BA2A3A4A54003F2F84 /* imgui_impl_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5059C0892A38B4F00049142A /* imgui_impl_osx.mm */; };
+		5096B6BC2A3A4A8B003F2F84 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5096B6BB2A3A4A8B003F2F84 /* GameController.framework */; };
 		509815C72A36615100300CE9 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 509815C52A36615100300CE9 /* fishhook.c */; };
 		509815C82A36615100300CE9 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 509815C52A36615100300CE9 /* fishhook.c */; };
 		509815C92A36615100300CE9 /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = 509815C62A36615100300CE9 /* fishhook.h */; };
@@ -349,6 +351,7 @@
 		505E2F792A34A5FA00D2F992 /* nethost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nethost.h; sourceTree = "<group>"; };
 		505E2F892A34C43900D2F992 /* libAetherium.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libAetherium.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		505E2F932A34C64000D2F992 /* libnethost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libnethost.a; sourceTree = "<group>"; };
+		5096B6BB2A3A4A8B003F2F84 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		509815C52A36615100300CE9 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
 		509815C62A36615100300CE9 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
 		509815E22A3732FC00300CE9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -382,6 +385,7 @@
 			files = (
 				5059C2912A38BD8C0049142A /* QuartzCore.framework in Frameworks */,
 				50BF6C962A35D54D00314C83 /* libfmt.a in Frameworks */,
+				5096B6BC2A3A4A8B003F2F84 /* GameController.framework in Frameworks */,
 				505E2F952A34C64000D2F992 /* libnethost.a in Frameworks */,
 				5059C2902A38BD870049142A /* Metal.framework in Frameworks */,
 				509815E42A37331400300CE9 /* Cocoa.framework in Frameworks */,
@@ -1209,6 +1213,7 @@
 		505E2F7E2A34B79D00D2F992 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5096B6BB2A3A4A8B003F2F84 /* GameController.framework */,
 				5059C28E2A38BD3F0049142A /* QuartzCore.framework */,
 				5059C28C2A38BCCC0049142A /* Metal.framework */,
 				509815E22A3732FC00300CE9 /* Cocoa.framework */,
@@ -1386,6 +1391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5096B6BA2A3A4A54003F2F84 /* imgui_impl_osx.mm in Sources */,
 				5059C2972A38BDE20049142A /* imgui_widgets.cpp in Sources */,
 				5059C2962A38BDDB0049142A /* imgui_tables.cpp in Sources */,
 				5059C2952A38BDD50049142A /* imgui_draw.cpp in Sources */,

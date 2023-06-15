@@ -58,5 +58,3 @@ void utils::showAlert(const char *message, const char *info, const char *buttonT
         });
     }
 }
-
-
