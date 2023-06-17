@@ -46,8 +46,18 @@ void ImGui_ImplMetal_DeInit(void){
 }
 
 __attribute__((visibility("default")))
-bool ImGui_ImplMacOS_Init(void* view){
-    return ImGui_ImplOSX_Init((__bridge NSView*) view);
+bool ImGui_ImplMacOS_Init(void* view) {
+    __block bool result = false;
+    
+    if (![NSThread isMainThread]) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            result = ImGui_ImplOSX_Init((__bridge NSView*)view);
+        });
+    } else {
+        result = ImGui_ImplOSX_Init((__bridge NSView*)view);
+    }
+    
+    return result;
 }
 
 __attribute__((visibility("default")))
@@ -57,7 +67,13 @@ void ImGui_ImplMacOS_DeInit(void){
 
 __attribute__((visibility("default")))
 void ImGui_ImplMacOS_NewFrame(void* view){
-    ImGui_ImplOSX_NewFrame((__bridge NSView*) view);
+    if (![NSThread isMainThread]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            ImGui_ImplOSX_NewFrame((__bridge NSView*)view);
+        });
+    } else {
+        ImGui_ImplOSX_NewFrame((__bridge NSView*)view);
+    }
 }
 
 __attribute__((visibility("default")))
