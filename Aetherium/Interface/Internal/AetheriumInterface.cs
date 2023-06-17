@@ -527,8 +527,10 @@ internal class AetheriumInterface : IDisposable, IServiceType
                     ImGui.BeginMenu($"W:{Util.FormatBytes(GC.GetTotalMemory(false))}", false);
 
                     var videoMem = Service<InterfaceManager>.Get().MetalDevice.currentAllocatedSize;
-                    ImGui.BeginMenu($"V:{Util.FormatBytes(videoMem)}",
-                        false);
+                    ImGui.BeginMenu($"V:{Util.FormatBytes(videoMem)}", false);
+
+                    var procMem = Process.GetCurrentProcess().WorkingSet64;
+                    ImGui.BeginMenu($"P:{Util.FormatBytes(procMem)}", false);
 
                     ImGui.PopFont();
                 }
