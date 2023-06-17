@@ -323,7 +323,7 @@ internal class ConsoleWindow : Window, IDisposable
             }
             else
             {
-                ImGui.PushStyleColor(ImGuiCol.FrameBg, ImGuiColors.AetheriumRed - new Vector4(0, 0, 0, 0.7f));
+                ImGui.PushStyleColor(ImGuiCol.FrameBg, ImGuiColors.AetheriumBlue - new Vector4(0, 0, 0, 0.7f));
             }
         }
 

@@ -26,7 +26,7 @@ internal sealed class ColorDemoWindow : Window
 
         this.colors = new List<(string Name, Vector4 Color)>()
         {
-            ("AetheriumRed", ImGuiColors.AetheriumRed),
+            ("AetheriumBlue", ImGuiColors.AetheriumBlue),
             ("AetheriumGrey", ImGuiColors.AetheriumGrey),
             ("AetheriumGrey2", ImGuiColors.AetheriumGrey2),
             ("AetheriumGrey3", ImGuiColors.AetheriumGrey3),

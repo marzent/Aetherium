@@ -234,7 +234,7 @@ internal class NotificationManager : IServiceType
             NotificationType.None => ImGuiColors.AetheriumWhite,
             NotificationType.Success => ImGuiColors.HealerGreen,
             NotificationType.Warning => ImGuiColors.AetheriumOrange,
-            NotificationType.Error => ImGuiColors.AetheriumRed,
+            NotificationType.Error => ImGuiColors.AetheriumBlue,
             NotificationType.Info => ImGuiColors.TankBlue,
             _ => throw new ArgumentOutOfRangeException(),
         };

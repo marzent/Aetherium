@@ -8,7 +8,7 @@ namespace Aetherium.Interface.Style;
 public class AetheriumColors
 {
     [JsonPropertyName("a")]
-    public Vector4? AetheriumRed { get; set; }
+    public Vector4? AetheriumBlue { get; set; }
 
     [JsonPropertyName("b")]
     public Vector4? AetheriumGrey { get; set; }
@@ -66,9 +66,9 @@ public class AetheriumColors
 
     public void Apply()
     {
-        if (AetheriumRed.HasValue)
+        if (AetheriumBlue.HasValue)
         {
-            ImGuiColors.AetheriumRed = AetheriumRed.Value;
+            ImGuiColors.AetheriumBlue = AetheriumBlue.Value;
         }
 
         if (AetheriumGrey.HasValue)

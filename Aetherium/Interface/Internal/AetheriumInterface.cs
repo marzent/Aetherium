@@ -325,7 +325,7 @@ internal class AetheriumInterface : IDisposable, IServiceType
                         ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoMouseInputs |
                         ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoSavedSettings))
                 {
-                    ImGui.TextColored(ImGuiColors.AetheriumRed, "Is force FishHook!");
+                    ImGui.TextColored(ImGuiColors.AetheriumBlue, "Is force FishHook!");
                 }
 
                 ImGui.End();

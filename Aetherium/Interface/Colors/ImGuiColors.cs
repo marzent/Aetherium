@@ -10,7 +10,7 @@ public static class ImGuiColors
     /// <summary>
     /// Gets red used in Aetherium.
     /// </summary>
-    public static Vector4 AetheriumRed { get; internal set; } = new(1f, 0f, 0f, 1f);
+    public static Vector4 AetheriumBlue { get; internal set; } = new (0.26f, 0.59f, 0.98f, 1);
 
     /// <summary>
     /// Gets grey used in Aetherium.

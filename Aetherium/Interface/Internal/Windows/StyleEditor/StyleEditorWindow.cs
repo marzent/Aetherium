@@ -194,7 +194,7 @@ public class StyleEditorWindow : Window
 
         if (this.currentSel < 2)
         {
-            ImGui.TextColored(ImGuiColors.AetheriumRed, Loc.Localize("StyleEditorNotAllowed", "You cannot edit built-in styles. Please add a new style first."));
+            ImGui.TextColored(ImGuiColors.AetheriumBlue, Loc.Localize("StyleEditorNotAllowed", "You cannot edit built-in styles. Please add a new style first."));
         }
         else if (appliedThisFrame)
         {
