@@ -167,6 +167,8 @@ public static unsafe class ObjectiveCRuntime
     [DllImport(ObjCLibrary, EntryPoint = "objc_msgSend")]
     public static extern uint uint_objc_msgSend(nint receiver, Selector selector);
     [DllImport(ObjCLibrary, EntryPoint = "objc_msgSend")]
+    public static extern ulong ulong_objc_msgSend(nint receiver, Selector selector);
+    [DllImport(ObjCLibrary, EntryPoint = "objc_msgSend")]
     public static extern float float_objc_msgSend(nint receiver, Selector selector);
     [DllImport(ObjCLibrary, EntryPoint = "objc_msgSend")]
 

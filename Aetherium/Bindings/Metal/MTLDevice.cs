@@ -140,6 +140,9 @@ public unsafe struct MTLDevice
 
     public Bool8 isDepth24Stencil8PixelFormatSupported
         => bool8_objc_msgSend(NativePtr, sel_isDepth24Stencil8PixelFormatSupported);
+    
+    public ulong currentAllocatedSize => ulong_objc_msgSend(NativePtr, sel_currentAllocatedSize);
+
 
     [DllImport(MetalFramework)]
     public static extern MTLDevice MTLCreateSystemDefaultDevice();
@@ -163,4 +166,5 @@ public unsafe struct MTLDevice
     private static readonly Selector sel_supportsTextureSampleCount = "supportsTextureSampleCount:";
     private static readonly Selector sel_supportsFeatureSet = "supportsFeatureSet:";
     private static readonly Selector sel_isDepth24Stencil8PixelFormatSupported = "isDepth24Stencil8PixelFormatSupported";
+    private static readonly Selector sel_currentAllocatedSize = "currentAllocatedSize";
 }

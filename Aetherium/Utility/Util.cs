@@ -328,7 +328,7 @@ public static class Util
     /// </summary>
     /// <param name="bytes">Number of bytes.</param>
     /// <returns>Human readable version.</returns>
-    public static string FormatBytes(long bytes)
+    public static string FormatBytes(ulong bytes)
     {
         string[] suffix = { "B", "KB", "MB", "GB", "TB" };
         int i;
@@ -340,6 +340,8 @@ public static class Util
 
         return $"{dblSByte:0.00} {suffix[i]}";
     }
+
+    public static string FormatBytes(long bytes) => FormatBytes((ulong)bytes);
 
     /// <summary>
     /// Retrieve a UTF8 string from a null terminated byte array.
