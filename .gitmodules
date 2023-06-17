@@ -1,6 +1,6 @@
 [submodule "cimgui"]
 	path = cimgui
-	url = https://github.com/cimgui/cimgui
+	url = https://github.com/marzent/cimgui
 [submodule "SPIRV-Cross"]
 	path = SPIRV-Cross
 	url = https://github.com/KhronosGroup/SPIRV-Cross
