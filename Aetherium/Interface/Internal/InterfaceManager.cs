@@ -289,11 +289,16 @@ internal class InterfaceManager : IDisposable, IServiceType
                 if (iniFileInfo.Length > 1200000)
                 {
                     Log.Warning("AetheriumUI.ini was over 1mb, deleting");
-                    iniFileInfo.CopyTo(Path.Combine(iniFileInfo.DirectoryName, $"AetheriumUI-{DateTimeOffset.Now.ToUnixTimeSeconds()}.ini"));
+                    iniFileInfo.CopyTo(Path.Combine(iniFileInfo.DirectoryName,
+                        $"AetheriumUI-{DateTimeOffset.Now.ToUnixTimeSeconds()}.ini"));
                     iniFileInfo.Delete();
                 }
             }
-            catch (Exception ex) when (ex is not FileNotFoundException)
+            catch (FileNotFoundException ex)
+            {
+                Log.Warning(ex, "Could not find Aetherium.UI");
+            }
+            catch (Exception ex)
             {
                 Log.Error(ex, "Could not delete AetheriumUI.ini");
             }
@@ -418,7 +423,6 @@ internal class InterfaceManager : IDisposable, IServiceType
         io.DisplaySize.Y = (float)metalView.bounds.size.height;
         var framebufferScale = metalView.window?.screen.backingScaleFactor ?? NSScreen.mainScreen.backingScaleFactor;
         io.DisplayFramebufferScale = new Vector2(framebufferScale, framebufferScale);
-        
         ImGui_ImplMetal_NewFrame(frameBufferDescriptor);
         ImGui_ImplMacOS_NewFrame(metalView);
         ImGui.NewFrame();
@@ -470,7 +474,7 @@ internal class InterfaceManager : IDisposable, IServiceType
 
         ioFonts.Clear();
         ioFonts.TexDesiredWidth = 4096;
-        DefaultFont = ioFonts.AddFontFromFileTTF("/Library/Fonts/SF-Pro.ttf", DefaultFontSizePx * io.FontGlobalScale);
+        DefaultFont = ioFonts.AddFontFromFileTTF("/Library/Fonts/SF-Pro-Display-Medium.otf", DefaultFontSizePx * io.FontGlobalScale);
         MonoFont = ioFonts.AddFontFromFileTTF("/Library/Fonts/SF-Mono-Regular.otf", DefaultFontSizePx * io.FontGlobalScale);
     }
 
