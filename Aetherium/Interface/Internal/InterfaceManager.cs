@@ -145,7 +145,7 @@ internal class InterfaceManager : IDisposable, IServiceType
     /// <summary>
     /// Gets a value indicating whether the Aetherium interface ready to use.
     /// </summary>
-    public bool IsReady => this.metalView != null;
+    public bool IsReady => metalView != nint.Zero;
 
     /// <summary>
     /// Gets or sets a value indicating whether or not Draw events should be dispatched.
@@ -293,7 +293,7 @@ internal class InterfaceManager : IDisposable, IServiceType
                     iniFileInfo.Delete();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is not FileNotFoundException)
             {
                 Log.Error(ex, "Could not delete AetheriumUI.ini");
             }

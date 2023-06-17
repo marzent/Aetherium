@@ -37,18 +37,6 @@ public class SettingsTabLook : SettingsTab
             c => c.ToggleUiHide,
             (v, c) => c.ToggleUiHide = v),
 
-        new SettingsEntry<bool>(
-            Loc.Localize("AetheriumSettingToggleUiHideDuringCutscenes", "Hide plugin UI during cutscenes"),
-            Loc.Localize("AetheriumSettingToggleUiHideDuringCutscenesHint", "Hide any open windows by plugins during cutscenes."),
-            c => c.ToggleUiHideDuringCutscenes,
-            (v, c) => c.ToggleUiHideDuringCutscenes = v),
-
-        new SettingsEntry<bool>(
-            Loc.Localize("AetheriumSettingToggleUiHideDuringGpose", "Hide plugin UI while gpose is active"),
-            Loc.Localize("AetheriumSettingToggleUiHideDuringGposeHint", "Hide any open windows by plugins while gpose is active."),
-            c => c.ToggleUiHideDuringGpose,
-            (v, c) => c.ToggleUiHideDuringGpose = v),
-
         new GapSettingsEntry(5, true),
 
         new SettingsEntry<bool>(
@@ -149,7 +137,6 @@ public class SettingsTabLook : SettingsTab
     public override void Load()
     {
         this.globalUiScale = Service<AetheriumConfiguration>.Get().GlobalUiScale;
-        this.fontGamma = Service<AetheriumConfiguration>.Get().FontGammaLevel;
 
         base.Load();
     }

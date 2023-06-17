@@ -33,26 +33,5 @@ public class HitchSettingsWindow : Window
             config.UiBuilderHitch = uiBuilderHitch;
             config.QueueSave();
         }
-
-        var frameworkUpdateHitch = (float)config.FrameworkUpdateHitch;
-        if (ImGui.SliderFloat("FrameworkUpdateHitch", ref frameworkUpdateHitch, MinHitch, MaxHitch))
-        {
-            config.FrameworkUpdateHitch = frameworkUpdateHitch;
-            config.QueueSave();
-        }
-        
-        var gameNetworkUpHitch = (float)config.GameNetworkUpHitch;
-        if (ImGui.SliderFloat("GameNetworkUpHitch", ref gameNetworkUpHitch, MinHitch, MaxHitch))
-        {
-            config.GameNetworkUpHitch = gameNetworkUpHitch;
-            config.QueueSave();
-        }
-        
-        var gameNetworkDownHitch = (float)config.GameNetworkDownHitch;
-        if (ImGui.SliderFloat("GameNetworkDownHitch", ref gameNetworkDownHitch, MinHitch, MaxHitch))
-        {
-            config.GameNetworkDownHitch = gameNetworkDownHitch;
-            config.QueueSave();
-        }
     }
 }

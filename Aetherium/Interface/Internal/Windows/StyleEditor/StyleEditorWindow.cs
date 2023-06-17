@@ -35,11 +35,11 @@ public class StyleEditorWindow : Window
         : base("Aetherium Style Editor")
     {
         this.IsOpen = true;
-        this.SizeConstraints = new WindowSizeConstraints
+        /*this.SizeConstraints = new WindowSizeConstraints
         {
             MinimumSize = new Vector2(890, 560),
             MaximumSize = new Vector2(10000, 10000),
-        };
+        };*/
     }
 
     /// <inheritdoc />
