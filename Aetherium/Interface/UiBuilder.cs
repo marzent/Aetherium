@@ -76,6 +76,11 @@ public sealed class UiBuilder : IDisposable
     /// <strong>PLEASE remove this handler inside Dispose, or when you no longer need your fonts!</strong>
     /// </summary>
     public event Action AfterBuildFonts;
+    
+    /// <summary>
+    /// Gets the default Aetherium monospaced font based on SF-Mono.
+    /// </summary>
+    public static ImFontPtr MonoFont => InterfaceManager.MonoFont;
 
     /// <summary>
     /// Gets or sets an action that is called when plugin UI or interface modifications are supposed to be shown.

@@ -243,12 +243,18 @@ internal class AetheriumInterface : IDisposable, IServiceType
             this.DrawDevMenu();
 
             this.WindowSystem.Draw();
+            
+            if (this.isImGuiTestWindowsInMonospace)
+                ImGui.PushFont(InterfaceManager.MonoFont);
 
             if (this.isImGuiDrawDemoWindow)
                 ImGui.ShowDemoWindow(ref this.isImGuiDrawDemoWindow);
 
             if (this.isImGuiDrawMetricsWindow)
                 ImGui.ShowMetricsWindow(ref this.isImGuiDrawMetricsWindow);
+            
+            if (this.isImGuiTestWindowsInMonospace)
+                ImGui.PopFont();
 
             if (this.isCreditsDarkening)
                 this.DrawCreditsDarkeningAnimation();
@@ -438,7 +444,7 @@ internal class AetheriumInterface : IDisposable, IServiceType
                     ImGui.Separator();
 
                     ImGui.MenuItem(Util.AssemblyVersion, false);
-                    ImGui.MenuItem($"D: {Util.GetGitHash()}[{Util.GetGitCommitCount()}]]", false);
+                    ImGui.MenuItem($"A: {Util.GetGitHash()}[{Util.GetGitCommitCount()}]]", false);
                     ImGui.MenuItem($"CLR: {Environment.Version}", false);
 
                     ImGui.EndMenu();
@@ -513,6 +519,8 @@ internal class AetheriumInterface : IDisposable, IServiceType
 
                 if (configuration.ShowDevBarInfo)
                 {
+                    ImGui.PushFont(InterfaceManager.MonoFont);
+                    
                     ImGui.BeginMenu($"{Util.GetGitHash()}({Util.GetGitCommitCount()})", false);
                     ImGui.BeginMenu(this.FrameCount.ToString("000000"), false);
                     ImGui.BeginMenu(ImGui.GetIO().Framerate.ToString("000"), false);
@@ -522,6 +530,8 @@ internal class AetheriumInterface : IDisposable, IServiceType
                     ImGui.BeginMenu(
                         !videoMem.HasValue ? $"V:???" : $"V:{Util.FormatBytes(videoMem.Value.Used)}",
                         false);*/
+
+                    ImGui.PopFont();
                 }
 
                 ImGui.EndMainMenuBar();

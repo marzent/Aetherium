@@ -245,6 +245,8 @@ internal class ConsoleWindow : Window, IDisposable
         {
             clipper = new ImGuiListClipperPtr(ImGuiNative.ImGuiListClipper_ImGuiListClipper());
         }
+        
+        ImGui.PushFont(InterfaceManager.MonoFont);
 
         var childPos = ImGui.GetWindowPos();
         var childDrawList = ImGui.GetWindowDrawList();
@@ -295,6 +297,8 @@ internal class ConsoleWindow : Window, IDisposable
             clipper.End();
             clipper.Destroy();
         }
+        
+        ImGui.PopFont();
 
         ImGui.PopStyleVar();
 

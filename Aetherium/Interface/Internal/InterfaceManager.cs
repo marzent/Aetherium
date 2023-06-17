@@ -58,6 +58,7 @@ internal class InterfaceManager : IDisposable, IServiceType
     private MTLLibrary fragLibrary;
     private NSView metalView;
     private MTLRenderPipelineState pipelineState;
+    private MTLRenderPassDescriptor frameBufferDescriptor;
     private MTLSamplerState sampler;
     private bool shaderEnabled = true;
 
@@ -73,6 +74,7 @@ internal class InterfaceManager : IDisposable, IServiceType
     {
         MetalDevice = MTLDevice.MTLCreateSystemDefaultDevice();
         metalView = new NSView(nint.Zero);
+        frameBufferDescriptor = MTLRenderPassDescriptor.New();
         ImGui.CreateContext();
         ImGui_ImplMetal_Init(MetalDevice.NativePtr);
         var viewInitAddress =
@@ -85,7 +87,7 @@ internal class InterfaceManager : IDisposable, IServiceType
     }
 
     private float _exposure, _saturation = 1, _contrast = 1;
-    private Vector4 shaderColor = new Vector4(1);
+    private Vector4 shaderColor = new(1);
     
     private unsafe void UpdatePipelineState()
     {
@@ -151,14 +153,19 @@ internal class InterfaceManager : IDisposable, IServiceType
     public bool IsDispatchingEvents { get; set; } = true;
 
     /// <summary>
-    /// Gets or sets the overrided font gamma value, instead of using the value from configuration.
+    /// Gets the default ImGui font.
     /// </summary>
-    public float? FontGammaOverride { get; set; } = null;
+    public static ImFontPtr DefaultFont { get; private set; }
 
     /// <summary>
-    /// Gets the font gamma value to use.
+    /// Gets an included FontAwesome icon font.
     /// </summary>
-    public float FontGamma => Math.Max(0.1f, this.FontGammaOverride.GetValueOrDefault(Service<AetheriumConfiguration>.Get().FontGammaLevel));
+    public static ImFontPtr IconFont { get; private set; }
+
+    /// <summary>
+    /// Gets an included monospaced font.
+    /// </summary>
+    public static ImFontPtr MonoFont { get; private set; }
 
     /// <summary>
     /// Dispose of managed and unmanaged resources.
@@ -356,7 +363,7 @@ internal class InterfaceManager : IDisposable, IServiceType
         Service<InterfaceManagerWithScene>.Provide(new InterfaceManagerWithScene(this));
     }
     
-    private static MTLRenderPassDescriptor CreateDescriptorFrom(CAMetalDrawable drawable)
+    private void UpdateFramebufferDescriptor(CAMetalDrawable drawable)
     {
         var renderPassDescriptor = MTLRenderPassDescriptor.New();
         var colorAttachments = renderPassDescriptor.colorAttachments;
@@ -364,7 +371,8 @@ internal class InterfaceManager : IDisposable, IServiceType
         colorAttachment.texture = drawable.texture;
         colorAttachment.loadAction = MTLLoadAction.Load;
         colorAttachments[0] = colorAttachment;
-        return renderPassDescriptor;
+        frameBufferDescriptor.Release();
+        frameBufferDescriptor =  renderPassDescriptor;
     }
 
     private void PresentDetour(nint commandBufferPtr, nint drawablePtr)
@@ -377,22 +385,19 @@ internal class InterfaceManager : IDisposable, IServiceType
 
         var commandBuffer = new MTLCommandBuffer(Util.Dereference(commandBufferPtr));
         var drawable = new CAMetalDrawable(Util.Dereference(drawablePtr));
+        
+        UpdateFramebufferDescriptor(drawable);
 
         if (shaderEnabled)
         {
-            var renderPassDescriptor = CreateDescriptorFrom(drawable);
-
-            var commandEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptor);
+            var commandEncoder = commandBuffer.renderCommandEncoderWithDescriptor(frameBufferDescriptor);
             commandEncoder.setRenderPipelineState(pipelineState);
 
             commandEncoder.setFragmentTexture(drawable.texture, 0);
             commandEncoder.setFragmentSamplerState(sampler, 0);
-
-            // Assuming you're rendering a fullscreen quad
+            
             commandEncoder.drawPrimitives(MTLPrimitiveType.Triangle, 0, 6);
             commandEncoder.endEncoding();
-            
-            renderPassDescriptor.Release();
         }
 
         RenderImGui(commandBuffer, drawable);
@@ -413,23 +418,21 @@ internal class InterfaceManager : IDisposable, IServiceType
         io.DisplaySize.Y = (float)metalView.bounds.size.height;
         var framebufferScale = metalView.window?.screen.backingScaleFactor ?? NSScreen.mainScreen.backingScaleFactor;
         io.DisplayFramebufferScale = new Vector2(framebufferScale, framebufferScale);
-
-        // Start the Dear ImGui frame
-        var descriptor = CreateDescriptorFrom(drawable);
-        ImGui_ImplMetal_NewFrame(descriptor);
+        
+        ImGui_ImplMetal_NewFrame(frameBufferDescriptor);
         ImGui_ImplMacOS_NewFrame(metalView);
         ImGui.NewFrame();
         io.MouseDrawCursor = io.WantCaptureMouse;
         ImGui.Begin("Shaders");
-        var _showShader = shaderEnabled;
-        ImGui.Checkbox("MinimalColorGrading.fx", ref _showShader);
-        shaderEnabled = _showShader;
-        if (_showShader)
+        ImGui.Checkbox("MinimalColorGrading.fx", ref shaderEnabled);
+        if (shaderEnabled)
         {
-            if (ImGui.SliderFloat("Exposure", ref _exposure, -3.0f, 3.0f, "%.1f")) UpdatePipelineState();
-            if (ImGui.SliderFloat("Saturation", ref _saturation, 0f, 2.0f, "%.1f")) UpdatePipelineState();
-            if (ImGui.SliderFloat("Contrast", ref _contrast, -0f, 2.0f, "%.1f")) UpdatePipelineState();
+            if (ImGui.SliderFloat("Exposure", ref _exposure, -3.0f, 3.0f, "%.2f")) UpdatePipelineState();
+            if (ImGui.SliderFloat("Saturation", ref _saturation, 0f, 2.0f, "%.2f")) UpdatePipelineState();
+            if (ImGui.SliderFloat("Contrast", ref _contrast, -0f, 2.0f, "%.2f")) UpdatePipelineState();
             var oldColor = shaderColor;
+            ImGui.Text("Color:");
+            ImGui.SameLine();
             shaderColor = ImGuiComponents.ColorPickerWithPalette(1, "Color Filter", oldColor, ImGuiColorEditFlags.NoAlpha);
             if (shaderColor != oldColor) UpdatePipelineState();
         }
@@ -437,12 +440,11 @@ internal class InterfaceManager : IDisposable, IServiceType
         Draw();
         ImGui.Render();
         var drawData = ImGui.GetDrawData();
-        var renderEncoder = commandBuffer.renderCommandEncoderWithDescriptor(descriptor);
+        var renderEncoder = commandBuffer.renderCommandEncoderWithDescriptor(frameBufferDescriptor);
         renderEncoder.pushDebugGroup(NSString.New("Dear ImGui rendering"));
         ImGui_ImplMetal_RenderDrawData(new nint(drawData), commandBuffer.NativePtr, renderEncoder.NativePtr);
         renderEncoder.popDebugGroup();
         renderEncoder.endEncoding();
-        descriptor.Release();
     }
 
     private void CheckViewportState()
@@ -466,11 +468,10 @@ internal class InterfaceManager : IDisposable, IServiceType
         var io = ImGui.GetIO();
         var ioFonts = io.Fonts;
 
-        var fontGamma = this.FontGamma;
-        
         ioFonts.Clear();
         ioFonts.TexDesiredWidth = 4096;
-        io.Fonts.AddFontFromFileTTF("/Library/Fonts/SF-Pro.ttf", DefaultFontSizePx);
+        DefaultFont = ioFonts.AddFontFromFileTTF("/Library/Fonts/SF-Pro.ttf", DefaultFontSizePx * io.FontGlobalScale);
+        MonoFont = ioFonts.AddFontFromFileTTF("/Library/Fonts/SF-Mono-Regular.otf", DefaultFontSizePx * io.FontGlobalScale);
     }
 
     [ServiceManager.CallWhenServicesReady]
@@ -487,8 +488,6 @@ internal class InterfaceManager : IDisposable, IServiceType
         Log.Verbose($"Next drawable address 0x{metalPresentAddr.ToInt64():X}");
         LastImGuiIoPtr = ImGui.GetIO();
         CheckViewportState();
-        metalPresentHook.Enable();
-        nextDrawableHook.Enable();
         Log.Verbose("Compiling shaders...");
         var compileOptions = MTLCompileOptions.New();
         vertexLibrary = MetalDevice.newLibraryWithSource(Shaders.MCG_VERTEX, compileOptions);
@@ -505,6 +504,8 @@ internal class InterfaceManager : IDisposable, IServiceType
         samplerDescriptor.Release();
         UpdatePipelineState();
         Log.Verbose("Done!");
+        metalPresentHook.Enable();
+        nextDrawableHook.Enable();
     }
 
     /// <summary>

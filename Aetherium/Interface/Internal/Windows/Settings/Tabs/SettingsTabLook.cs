@@ -143,25 +143,6 @@ public class SettingsTabLook : SettingsTab
 
         ImGuiHelpers.SafeTextColoredWrapped(ImGuiColors.AetheriumGrey, Loc.Localize("AetheriumSettingsGlobalUiScaleHint", "Scale text in all XIVLauncher UI elements - this is useful for 4K displays."));
 
-        ImGuiHelpers.ScaledDummy(5);
-
-        ImGui.SetCursorPosY(ImGui.GetCursorPosY() + 3);
-        ImGui.Text(Loc.Localize("AetheriumSettingsFontGamma", "Font Gamma"));
-        ImGui.SameLine();
-        ImGui.SetCursorPosY(ImGui.GetCursorPosY() - 3);
-        if (ImGui.Button(Loc.Localize("AetheriumSettingsIndividualConfigResetToDefaultValue", "Reset") + "##AetheriumSettingsFontGammaReset"))
-        {
-            this.fontGamma = 1.4f;
-            interfaceManager.FontGammaOverride = this.fontGamma;
-        }
-
-        if (ImGui.DragFloat("##AetheriumSettingsFontGammaDrag", ref this.fontGamma, 0.005f, 0.3f, 3f, "%.2f", ImGuiSliderFlags.AlwaysClamp))
-        {
-            interfaceManager.FontGammaOverride = this.fontGamma;
-        }
-
-        ImGuiHelpers.SafeTextColoredWrapped(ImGuiColors.AetheriumGrey, Loc.Localize("AetheriumSettingsFontGammaHint", "Changes the thickness of text."));
-
         base.Draw();
     }
 

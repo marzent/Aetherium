@@ -61,11 +61,9 @@ internal class SettingsWindow : Window
         var interfaceManager = Service<InterfaceManager>.Get();
 
         var rebuildFont =
-            ImGui.GetIO().FontGlobalScale != configuration.GlobalUiScale ||
-            interfaceManager.FontGamma != configuration.FontGammaLevel;
+            ImGui.GetIO().FontGlobalScale != configuration.GlobalUiScale;
 
         ImGui.GetIO().FontGlobalScale = configuration.GlobalUiScale;
-        interfaceManager.FontGammaOverride = null;
 
         foreach (var settingsTab in this.tabs)
         {
