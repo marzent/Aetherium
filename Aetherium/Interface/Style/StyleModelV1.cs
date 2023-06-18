@@ -32,8 +32,11 @@ public class StyleModelV1 : StyleModel
         WindowPadding = new Vector2(8, 8),
         WindowRounding = 9,
         WindowBorderSize = 1,
-        WindowTitleAlign = new Vector2(0, 0.5f),
-        WindowMenuButtonPosition = ImGuiDir.Right,
+        WindowTitleAlign = new Vector2(0.5f, 0.5f),
+        WindowMenuButtonPosition = ImGuiDir.Left,
+        WindowCloseButtonPosition = ImGuiDir.Left,
+        TabCloseButtonPosition = ImGuiDir.Left,
+        WindowTabCloseButtonPosition = ImGuiDir.Left,
         ChildRounding = 0,
         ChildBorderSize = 1,
         PopupRounding = 0,
@@ -350,6 +353,15 @@ public class StyleModelV1 : StyleModel
 
     [JsonPropertyName("aa")]
     public Vector2 DisplaySafeAreaPadding { get; set; }
+    
+    [JsonPropertyName("ab")]
+    public ImGuiDir WindowCloseButtonPosition { get; set; }
+    
+    [JsonPropertyName("ab")]
+    public ImGuiDir WindowTabCloseButtonPosition { get; set; }
+    
+    [JsonPropertyName("ab")]
+    public ImGuiDir TabCloseButtonPosition { get; set; }
 
 #pragma warning restore SA1600
 
@@ -373,7 +385,10 @@ public class StyleModelV1 : StyleModel
         model.WindowRounding = style.WindowRounding;
         model.WindowBorderSize = style.WindowBorderSize;
         model.WindowTitleAlign = style.WindowTitleAlign;
+        model.WindowCloseButtonPosition = style.WindowCloseButtonPosition;
         model.WindowMenuButtonPosition = style.WindowMenuButtonPosition;
+        model.WindowTabCloseButtonPosition = style.WindowTabCloseButtonPosition;
+        model.TabCloseButtonPosition = style.TabCloseButtonPosition;
         model.ChildRounding = style.ChildRounding;
         model.ChildBorderSize = style.ChildBorderSize;
         model.PopupRounding = style.PopupRounding;
@@ -447,6 +462,9 @@ public class StyleModelV1 : StyleModel
         style.WindowRounding = this.WindowRounding;
         style.WindowBorderSize = this.WindowBorderSize;
         style.WindowTitleAlign = this.WindowTitleAlign;
+        style.WindowCloseButtonPosition = this.WindowCloseButtonPosition;
+        style.WindowTabCloseButtonPosition = this.WindowTabCloseButtonPosition;
+        style.TabCloseButtonPosition = this.TabCloseButtonPosition;
         style.WindowMenuButtonPosition = this.WindowMenuButtonPosition;
         style.ChildRounding = this.ChildRounding;
         style.ChildBorderSize = this.ChildBorderSize;

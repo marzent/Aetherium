@@ -8,7 +8,6 @@ using Aetherium.Configuration.Internal;
 using Aetherium.Interface.Colors;
 using ImGuiNET;
 using Serilog;
-using Aetherium.Utility;
 using Util = Aetherium.Utility.Util;
 
 namespace Aetherium.Interface.Style;

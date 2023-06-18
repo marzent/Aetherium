@@ -14,6 +14,9 @@ namespace ImGuiNET
         public float WindowBorderSize;
         public Vector2 WindowMinSize;
         public Vector2 WindowTitleAlign;
+        public ImGuiDir WindowCloseButtonPosition;
+        public ImGuiDir WindowTabCloseButtonPosition;
+        public ImGuiDir TabCloseButtonPosition;
         public ImGuiDir WindowMenuButtonPosition;
         public float ChildRounding;
         public float ChildBorderSize;
@@ -121,6 +124,9 @@ namespace ImGuiNET
         public ref float WindowBorderSize => ref Unsafe.AsRef<float>(&NativePtr->WindowBorderSize);
         public ref Vector2 WindowMinSize => ref Unsafe.AsRef<Vector2>(&NativePtr->WindowMinSize);
         public ref Vector2 WindowTitleAlign => ref Unsafe.AsRef<Vector2>(&NativePtr->WindowTitleAlign);
+        public ref ImGuiDir WindowCloseButtonPosition => ref Unsafe.AsRef<ImGuiDir>(&NativePtr->WindowCloseButtonPosition);
+        public ref ImGuiDir WindowTabCloseButtonPosition => ref Unsafe.AsRef<ImGuiDir>(&NativePtr->WindowTabCloseButtonPosition);
+        public ref ImGuiDir TabCloseButtonPosition => ref Unsafe.AsRef<ImGuiDir>(&NativePtr->TabCloseButtonPosition);
         public ref ImGuiDir WindowMenuButtonPosition => ref Unsafe.AsRef<ImGuiDir>(&NativePtr->WindowMenuButtonPosition);
         public ref float ChildRounding => ref Unsafe.AsRef<float>(&NativePtr->ChildRounding);
         public ref float ChildBorderSize => ref Unsafe.AsRef<float>(&NativePtr->ChildBorderSize);
