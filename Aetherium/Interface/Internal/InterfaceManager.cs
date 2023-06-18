@@ -63,7 +63,7 @@ internal class InterfaceManager : IDisposable, IServiceType
     private bool shaderEnabled = true;
 
     private Hook<MetalPresentDelegate> metalPresentHook;
-    private Hook<InitWithFrameDelegate> initWithFrameHook;
+    private readonly Hook<InitWithFrameDelegate> initWithFrameHook;
     private Hook<NextDrawableDelegate> nextDrawableHook;
 
     // can't access imgui IO before first present call
@@ -130,7 +130,7 @@ internal class InterfaceManager : IDisposable, IServiceType
 
     private delegate void MetalPresentDelegate(nint commandBuffer, nint drawable);
     private delegate nint InitWithFrameDelegate(nint id, nint sel, nint cgRect);
-    private delegate nint NextDrawableDelegate(nint CaLayerStruct);
+    private delegate nint NextDrawableDelegate(nint caLayerStruct);
 
     /// <summary>
     /// This event gets called each frame to facilitate ImGui drawing.
@@ -489,7 +489,7 @@ internal class InterfaceManager : IDisposable, IServiceType
         metalPresentHook = Hook<MetalPresentDelegate>.FromAddress(metalPresentAddr, PresentDetour);
         nextDrawableHook = Hook<NextDrawableDelegate>.FromAddress(nextDrawableAddr, NextDrawableDetour);
         Log.Verbose($"Metal present address 0x{metalPresentAddr.ToInt64():X}");
-        Log.Verbose($"Next drawable address 0x{metalPresentAddr.ToInt64():X}");
+        Log.Verbose($"Next drawable address 0x{nextDrawableAddr.ToInt64():X}");
         LastImGuiIoPtr = ImGui.GetIO();
         CheckViewportState();
         Log.Verbose("Compiling shaders...");
