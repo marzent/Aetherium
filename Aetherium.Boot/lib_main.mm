@@ -26,6 +26,25 @@ void showAlert(const char *message, const char *info, const char *buttonTitle) {
 }
 
 __attribute__((visibility("default")))
+NSWindow *getMainWindow() {
+    __block NSWindow *mainWindow = nil;
+
+    if ([NSThread isMainThread]) {
+        mainWindow = [[[NSApplication sharedApplication] windows] firstObject];
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            mainWindow = [[[NSApplication sharedApplication] windows] firstObject];
+        });
+    }
+
+    if (mainWindow != nil)
+        return mainWindow;
+
+    [NSThread sleepForTimeInterval:0.001];
+    return getMainWindow();
+}
+
+__attribute__((visibility("default")))
 bool ImGui_ImplMetal_Init(void* device){
     return ImGui_ImplMetal_Init((__bridge id<MTLDevice>) device);
 }
@@ -57,7 +76,7 @@ void ImGui_ImplMacOS_DeInit(void){
 
 __attribute__((visibility("default")))
 void ImGui_ImplMacOS_NewFrame(void* view){
-        ImGui_ImplOSX_NewFrame((__bridge NSView*)view);
+    ImGui_ImplOSX_NewFrame((__bridge NSView*)view);
 }
 
 __attribute__((visibility("default")))
