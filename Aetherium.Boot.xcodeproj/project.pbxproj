@@ -35,6 +35,54 @@
 		505E2F912A34C49B00D2F992 /* CoreCLR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505E2F762A34A5FA00D2F992 /* CoreCLR.cpp */; };
 		505E2F942A34C64000D2F992 /* libnethost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505E2F932A34C64000D2F992 /* libnethost.a */; };
 		505E2F952A34C64000D2F992 /* libnethost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505E2F932A34C64000D2F992 /* libnethost.a */; };
+		509366A02A3F474D00AD5B25 /* spirv_cross_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366952A3F474D00AD5B25 /* spirv_cross_util.cpp */; };
+		509366A12A3F474D00AD5B25 /* spirv_cross.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366962A3F474D00AD5B25 /* spirv_cross.cpp */; };
+		509366A22A3F474D00AD5B25 /* spirv_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366972A3F474D00AD5B25 /* spirv_parser.cpp */; };
+		509366A32A3F474D00AD5B25 /* spirv_msl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366982A3F474D00AD5B25 /* spirv_msl.cpp */; };
+		509366A42A3F474D00AD5B25 /* spirv_hlsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366992A3F474D00AD5B25 /* spirv_hlsl.cpp */; };
+		509366A52A3F474D00AD5B25 /* spirv_reflect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669A2A3F474D00AD5B25 /* spirv_reflect.cpp */; };
+		509366A62A3F474D00AD5B25 /* spirv_cross_parsed_ir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669B2A3F474D00AD5B25 /* spirv_cross_parsed_ir.cpp */; };
+		509366A72A3F474D00AD5B25 /* spirv_cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669C2A3F474D00AD5B25 /* spirv_cpp.cpp */; };
+		509366A82A3F474D00AD5B25 /* spirv_cfg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669D2A3F474D00AD5B25 /* spirv_cfg.cpp */; };
+		509366A92A3F474D00AD5B25 /* spirv_glsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669E2A3F474D00AD5B25 /* spirv_glsl.cpp */; };
+		509366AA2A3F474D00AD5B25 /* spirv_cross_c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669F2A3F474D00AD5B25 /* spirv_cross_c.cpp */; };
+		509366AB2A3F475B00AD5B25 /* spirv_cfg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669D2A3F474D00AD5B25 /* spirv_cfg.cpp */; };
+		509366AC2A3F475E00AD5B25 /* spirv_cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669C2A3F474D00AD5B25 /* spirv_cpp.cpp */; };
+		509366AD2A3F476200AD5B25 /* spirv_cross_c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669F2A3F474D00AD5B25 /* spirv_cross_c.cpp */; };
+		509366AE2A3F476500AD5B25 /* spirv_cross_parsed_ir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669B2A3F474D00AD5B25 /* spirv_cross_parsed_ir.cpp */; };
+		509366AF2A3F476800AD5B25 /* spirv_cross_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366952A3F474D00AD5B25 /* spirv_cross_util.cpp */; };
+		509366B02A3F476B00AD5B25 /* spirv_cross.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366962A3F474D00AD5B25 /* spirv_cross.cpp */; };
+		509366B12A3F476F00AD5B25 /* spirv_glsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669E2A3F474D00AD5B25 /* spirv_glsl.cpp */; };
+		509366B22A3F477400AD5B25 /* spirv_hlsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366992A3F474D00AD5B25 /* spirv_hlsl.cpp */; };
+		509366B32A3F477700AD5B25 /* spirv_msl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366982A3F474D00AD5B25 /* spirv_msl.cpp */; };
+		509366B42A3F477A00AD5B25 /* spirv_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366972A3F474D00AD5B25 /* spirv_parser.cpp */; };
+		509366B52A3F477E00AD5B25 /* spirv_reflect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5093669A2A3F474D00AD5B25 /* spirv_reflect.cpp */; };
+		509366C12A3F49A900AD5B25 /* effect_expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366B82A3F49A900AD5B25 /* effect_expression.cpp */; };
+		509366C22A3F49A900AD5B25 /* effect_expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366B82A3F49A900AD5B25 /* effect_expression.cpp */; };
+		509366C32A3F49A900AD5B25 /* effect_codegen_glsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366B92A3F49A900AD5B25 /* effect_codegen_glsl.cpp */; };
+		509366C42A3F49A900AD5B25 /* effect_codegen_glsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366B92A3F49A900AD5B25 /* effect_codegen_glsl.cpp */; };
+		509366C52A3F49A900AD5B25 /* effect_preprocessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BA2A3F49A900AD5B25 /* effect_preprocessor.cpp */; };
+		509366C62A3F49A900AD5B25 /* effect_preprocessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BA2A3F49A900AD5B25 /* effect_preprocessor.cpp */; };
+		509366C72A3F49A900AD5B25 /* effect_symbol_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BB2A3F49A900AD5B25 /* effect_symbol_table.cpp */; };
+		509366C82A3F49A900AD5B25 /* effect_symbol_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BB2A3F49A900AD5B25 /* effect_symbol_table.cpp */; };
+		509366C92A3F49A900AD5B25 /* effect_codegen_hlsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BC2A3F49A900AD5B25 /* effect_codegen_hlsl.cpp */; };
+		509366CA2A3F49A900AD5B25 /* effect_codegen_hlsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BC2A3F49A900AD5B25 /* effect_codegen_hlsl.cpp */; };
+		509366CB2A3F49A900AD5B25 /* effect_codegen_spirv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BD2A3F49A900AD5B25 /* effect_codegen_spirv.cpp */; };
+		509366CC2A3F49A900AD5B25 /* effect_codegen_spirv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BD2A3F49A900AD5B25 /* effect_codegen_spirv.cpp */; };
+		509366CD2A3F49A900AD5B25 /* effect_lexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BE2A3F49A900AD5B25 /* effect_lexer.cpp */; };
+		509366CE2A3F49A900AD5B25 /* effect_lexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BE2A3F49A900AD5B25 /* effect_lexer.cpp */; };
+		509366CF2A3F49A900AD5B25 /* effect_parser_stmt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BF2A3F49A900AD5B25 /* effect_parser_stmt.cpp */; };
+		509366D02A3F49A900AD5B25 /* effect_parser_stmt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366BF2A3F49A900AD5B25 /* effect_parser_stmt.cpp */; };
+		509366D12A3F49A900AD5B25 /* effect_parser_exp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366C02A3F49A900AD5B25 /* effect_parser_exp.cpp */; };
+		509366D22A3F49A900AD5B25 /* effect_parser_exp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509366C02A3F49A900AD5B25 /* effect_parser_exp.cpp */; };
+		509366D42A3F4C7E00AD5B25 /* effect_parser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 509366D32A3F4C7E00AD5B25 /* effect_parser.hpp */; };
+		509366D62A3F4CAA00AD5B25 /* effect_codegen.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 509366D52A3F4CAA00AD5B25 /* effect_codegen.hpp */; };
+		509366D82A3F4CBC00AD5B25 /* effect_preprocessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 509366D72A3F4CBC00AD5B25 /* effect_preprocessor.hpp */; };
+		509366DA2A3F6D6D00AD5B25 /* effect_module.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 509366D92A3F6D6D00AD5B25 /* effect_module.hpp */; };
+		509366E42A40380D00AD5B25 /* dobby.h in Headers */ = {isa = PBXBuildFile; fileRef = 509366E32A40380D00AD5B25 /* dobby.h */; };
+		509366E62A40381800AD5B25 /* libdobby.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 509366E52A40381800AD5B25 /* libdobby.a */; };
+		509366E72A40381800AD5B25 /* libdobby.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 509366E52A40381800AD5B25 /* libdobby.a */; };
+		509366E82A40420500AD5B25 /* dobby.h in Sources */ = {isa = PBXBuildFile; fileRef = 509366E32A40380D00AD5B25 /* dobby.h */; };
 		5096B6BA2A3A4A54003F2F84 /* imgui_impl_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5059C0892A38B4F00049142A /* imgui_impl_osx.mm */; };
 		5096B6BC2A3A4A8B003F2F84 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5096B6BB2A3A4A8B003F2F84 /* GameController.framework */; };
 		509815C72A36615100300CE9 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 509815C52A36615100300CE9 /* fishhook.c */; };
@@ -44,16 +92,11 @@
 		509815E42A37331400300CE9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509815E22A3732FC00300CE9 /* Cocoa.framework */; };
 		50BF6C7E2A35C3DE00314C83 /* utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C7C2A35C3DE00314C83 /* utils.mm */; };
 		50BF6C7F2A35C3DE00314C83 /* utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C7C2A35C3DE00314C83 /* utils.mm */; };
-		50BF6C802A35C3DE00314C83 /* utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 50BF6C7D2A35C3DE00314C83 /* utils.hpp */; };
 		50BF6C832A35CE8600314C83 /* initialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C812A35CE8600314C83 /* initialize.cpp */; };
 		50BF6C842A35CE8600314C83 /* initialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C812A35CE8600314C83 /* initialize.cpp */; };
-		50BF6C852A35CE8600314C83 /* initialize.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 50BF6C822A35CE8600314C83 /* initialize.hpp */; };
 		50BF6C872A35CF4100314C83 /* lib_main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C862A35CF4100314C83 /* lib_main.mm */; };
-		50BF6C932A35D54D00314C83 /* format-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BF6C8F2A35D54D00314C83 /* format-inl.h */; };
-		50BF6C942A35D54D00314C83 /* core.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BF6C902A35D54D00314C83 /* core.h */; };
 		50BF6C952A35D54D00314C83 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50BF6C912A35D54D00314C83 /* libfmt.a */; };
 		50BF6C962A35D54D00314C83 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50BF6C912A35D54D00314C83 /* libfmt.a */; };
-		50BF6C972A35D54D00314C83 /* format.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BF6C922A35D54D00314C83 /* format.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -351,6 +394,32 @@
 		505E2F792A34A5FA00D2F992 /* nethost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nethost.h; sourceTree = "<group>"; };
 		505E2F892A34C43900D2F992 /* libAetherium.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libAetherium.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		505E2F932A34C64000D2F992 /* libnethost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libnethost.a; sourceTree = "<group>"; };
+		509366952A3F474D00AD5B25 /* spirv_cross_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_cross_util.cpp; path = "SPIRV-Cross/spirv_cross_util.cpp"; sourceTree = "<group>"; };
+		509366962A3F474D00AD5B25 /* spirv_cross.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_cross.cpp; path = "SPIRV-Cross/spirv_cross.cpp"; sourceTree = "<group>"; };
+		509366972A3F474D00AD5B25 /* spirv_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_parser.cpp; path = "SPIRV-Cross/spirv_parser.cpp"; sourceTree = "<group>"; };
+		509366982A3F474D00AD5B25 /* spirv_msl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_msl.cpp; path = "SPIRV-Cross/spirv_msl.cpp"; sourceTree = "<group>"; };
+		509366992A3F474D00AD5B25 /* spirv_hlsl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_hlsl.cpp; path = "SPIRV-Cross/spirv_hlsl.cpp"; sourceTree = "<group>"; };
+		5093669A2A3F474D00AD5B25 /* spirv_reflect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_reflect.cpp; path = "SPIRV-Cross/spirv_reflect.cpp"; sourceTree = "<group>"; };
+		5093669B2A3F474D00AD5B25 /* spirv_cross_parsed_ir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_cross_parsed_ir.cpp; path = "SPIRV-Cross/spirv_cross_parsed_ir.cpp"; sourceTree = "<group>"; };
+		5093669C2A3F474D00AD5B25 /* spirv_cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_cpp.cpp; path = "SPIRV-Cross/spirv_cpp.cpp"; sourceTree = "<group>"; };
+		5093669D2A3F474D00AD5B25 /* spirv_cfg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_cfg.cpp; path = "SPIRV-Cross/spirv_cfg.cpp"; sourceTree = "<group>"; };
+		5093669E2A3F474D00AD5B25 /* spirv_glsl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_glsl.cpp; path = "SPIRV-Cross/spirv_glsl.cpp"; sourceTree = "<group>"; };
+		5093669F2A3F474D00AD5B25 /* spirv_cross_c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spirv_cross_c.cpp; path = "SPIRV-Cross/spirv_cross_c.cpp"; sourceTree = "<group>"; };
+		509366B82A3F49A900AD5B25 /* effect_expression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = effect_expression.cpp; path = reshade/source/effect_expression.cpp; sourceTree = "<group>"; };
+		509366B92A3F49A900AD5B25 /* effect_codegen_glsl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = effect_codegen_glsl.cpp; path = reshade/source/effect_codegen_glsl.cpp; sourceTree = "<group>"; };
+		509366BA2A3F49A900AD5B25 /* effect_preprocessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = effect_preprocessor.cpp; path = reshade/source/effect_preprocessor.cpp; sourceTree = "<group>"; };
+		509366BB2A3F49A900AD5B25 /* effect_symbol_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = effect_symbol_table.cpp; path = reshade/source/effect_symbol_table.cpp; sourceTree = "<group>"; };
+		509366BC2A3F49A900AD5B25 /* effect_codegen_hlsl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = effect_codegen_hlsl.cpp; path = reshade/source/effect_codegen_hlsl.cpp; sourceTree = "<group>"; };
+		509366BD2A3F49A900AD5B25 /* effect_codegen_spirv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = effect_codegen_spirv.cpp; path = reshade/source/effect_codegen_spirv.cpp; sourceTree = "<group>"; };
+		509366BE2A3F49A900AD5B25 /* effect_lexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = effect_lexer.cpp; path = reshade/source/effect_lexer.cpp; sourceTree = "<group>"; };
+		509366BF2A3F49A900AD5B25 /* effect_parser_stmt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = effect_parser_stmt.cpp; path = reshade/source/effect_parser_stmt.cpp; sourceTree = "<group>"; };
+		509366C02A3F49A900AD5B25 /* effect_parser_exp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = effect_parser_exp.cpp; path = reshade/source/effect_parser_exp.cpp; sourceTree = "<group>"; };
+		509366D32A3F4C7E00AD5B25 /* effect_parser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = effect_parser.hpp; path = reshade/source/effect_parser.hpp; sourceTree = "<group>"; };
+		509366D52A3F4CAA00AD5B25 /* effect_codegen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = effect_codegen.hpp; path = reshade/source/effect_codegen.hpp; sourceTree = "<group>"; };
+		509366D72A3F4CBC00AD5B25 /* effect_preprocessor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = effect_preprocessor.hpp; path = reshade/source/effect_preprocessor.hpp; sourceTree = "<group>"; };
+		509366D92A3F6D6D00AD5B25 /* effect_module.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = effect_module.hpp; path = reshade/source/effect_module.hpp; sourceTree = "<group>"; };
+		509366E32A40380D00AD5B25 /* dobby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dobby.h; sourceTree = "<group>"; };
+		509366E52A40381800AD5B25 /* libdobby.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdobby.a; sourceTree = "<group>"; };
 		5096B6BB2A3A4A8B003F2F84 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		509815C52A36615100300CE9 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
 		509815C62A36615100300CE9 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
@@ -373,6 +442,7 @@
 			files = (
 				5059C28F2A38BD3F0049142A /* QuartzCore.framework in Frameworks */,
 				50BF6C952A35D54D00314C83 /* libfmt.a in Frameworks */,
+				509366E62A40381800AD5B25 /* libdobby.a in Frameworks */,
 				505E2F942A34C64000D2F992 /* libnethost.a in Frameworks */,
 				5059C28D2A38BCCC0049142A /* Metal.framework in Frameworks */,
 				509815E32A3732FC00300CE9 /* Cocoa.framework in Frameworks */,
@@ -389,6 +459,7 @@
 				505E2F952A34C64000D2F992 /* libnethost.a in Frameworks */,
 				5059C2902A38BD870049142A /* Metal.framework in Frameworks */,
 				509815E42A37331400300CE9 /* Cocoa.framework in Frameworks */,
+				509366E72A40381800AD5B25 /* libdobby.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1144,6 +1215,8 @@
 		505E2F502A34771C00D2F992 = {
 			isa = PBXGroup;
 			children = (
+				509366B72A3F491C00AD5B25 /* ReShade */,
+				509366942A3F471A00AD5B25 /* SPIRV-Cross */,
 				5059C0362A38B4F00049142A /* cimgui */,
 				505E2F5B2A34771C00D2F992 /* Aetherium.Boot */,
 				505E2F5A2A34771C00D2F992 /* Products */,
@@ -1163,6 +1236,7 @@
 		505E2F5B2A34771C00D2F992 /* Aetherium.Boot */ = {
 			isa = PBXGroup;
 			children = (
+				509366E22A4037CB00AD5B25 /* Dobby */,
 				509815C42A36615100300CE9 /* fishhook */,
 				50BF6C8E2A35D54D00314C83 /* fmt */,
 				505E2F672A34817500D2F992 /* Aetherium.Boot.entitlements */,
@@ -1221,6 +1295,53 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		509366942A3F471A00AD5B25 /* SPIRV-Cross */ = {
+			isa = PBXGroup;
+			children = (
+				5093669D2A3F474D00AD5B25 /* spirv_cfg.cpp */,
+				5093669C2A3F474D00AD5B25 /* spirv_cpp.cpp */,
+				5093669F2A3F474D00AD5B25 /* spirv_cross_c.cpp */,
+				5093669B2A3F474D00AD5B25 /* spirv_cross_parsed_ir.cpp */,
+				509366952A3F474D00AD5B25 /* spirv_cross_util.cpp */,
+				509366962A3F474D00AD5B25 /* spirv_cross.cpp */,
+				5093669E2A3F474D00AD5B25 /* spirv_glsl.cpp */,
+				509366992A3F474D00AD5B25 /* spirv_hlsl.cpp */,
+				509366982A3F474D00AD5B25 /* spirv_msl.cpp */,
+				509366972A3F474D00AD5B25 /* spirv_parser.cpp */,
+				5093669A2A3F474D00AD5B25 /* spirv_reflect.cpp */,
+			);
+			name = "SPIRV-Cross";
+			sourceTree = "<group>";
+		};
+		509366B72A3F491C00AD5B25 /* ReShade */ = {
+			isa = PBXGroup;
+			children = (
+				509366D92A3F6D6D00AD5B25 /* effect_module.hpp */,
+				509366D72A3F4CBC00AD5B25 /* effect_preprocessor.hpp */,
+				509366D52A3F4CAA00AD5B25 /* effect_codegen.hpp */,
+				509366D32A3F4C7E00AD5B25 /* effect_parser.hpp */,
+				509366B92A3F49A900AD5B25 /* effect_codegen_glsl.cpp */,
+				509366BC2A3F49A900AD5B25 /* effect_codegen_hlsl.cpp */,
+				509366BD2A3F49A900AD5B25 /* effect_codegen_spirv.cpp */,
+				509366B82A3F49A900AD5B25 /* effect_expression.cpp */,
+				509366BE2A3F49A900AD5B25 /* effect_lexer.cpp */,
+				509366C02A3F49A900AD5B25 /* effect_parser_exp.cpp */,
+				509366BF2A3F49A900AD5B25 /* effect_parser_stmt.cpp */,
+				509366BA2A3F49A900AD5B25 /* effect_preprocessor.cpp */,
+				509366BB2A3F49A900AD5B25 /* effect_symbol_table.cpp */,
+			);
+			name = ReShade;
+			sourceTree = "<group>";
+		};
+		509366E22A4037CB00AD5B25 /* Dobby */ = {
+			isa = PBXGroup;
+			children = (
+				509366E52A40381800AD5B25 /* libdobby.a */,
+				509366E32A40380D00AD5B25 /* dobby.h */,
+			);
+			path = Dobby;
+			sourceTree = "<group>";
+		};
 		509815C42A36615100300CE9 /* fishhook */ = {
 			isa = PBXGroup;
 			children = (
@@ -1248,12 +1369,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				509366DA2A3F6D6D00AD5B25 /* effect_module.hpp in Headers */,
 				5059C1772A38B7A80049142A /* cimgui.h in Headers */,
-				50BF6C942A35D54D00314C83 /* core.h in Headers */,
-				50BF6C852A35CE8600314C83 /* initialize.hpp in Headers */,
-				50BF6C802A35C3DE00314C83 /* utils.hpp in Headers */,
-				50BF6C932A35D54D00314C83 /* format-inl.h in Headers */,
-				50BF6C972A35D54D00314C83 /* format.h in Headers */,
+				509366D42A3F4C7E00AD5B25 /* effect_parser.hpp in Headers */,
+				509366D82A3F4CBC00AD5B25 /* effect_preprocessor.hpp in Headers */,
+				509366D62A3F4CAA00AD5B25 /* effect_codegen.hpp in Headers */,
+				509366E42A40380D00AD5B25 /* dobby.h in Headers */,
 				509815C92A36615100300CE9 /* fishhook.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1370,20 +1491,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				509366CF2A3F49A900AD5B25 /* effect_parser_stmt.cpp in Sources */,
+				509366A82A3F474D00AD5B25 /* spirv_cfg.cpp in Sources */,
+				509366C92A3F49A900AD5B25 /* effect_codegen_hlsl.cpp in Sources */,
+				509366A72A3F474D00AD5B25 /* spirv_cpp.cpp in Sources */,
+				509366A62A3F474D00AD5B25 /* spirv_cross_parsed_ir.cpp in Sources */,
+				509366C32A3F49A900AD5B25 /* effect_codegen_glsl.cpp in Sources */,
+				509366A52A3F474D00AD5B25 /* spirv_reflect.cpp in Sources */,
 				5059C28B2A38BCB00049142A /* imgui_widgets.cpp in Sources */,
 				5059C28A2A38BCA80049142A /* imgui_tables.cpp in Sources */,
 				5059C2892A38BCA00049142A /* imgui_draw.cpp in Sources */,
 				5059C2882A38BC970049142A /* imgui_demo.cpp in Sources */,
+				509366A92A3F474D00AD5B25 /* spirv_glsl.cpp in Sources */,
+				509366C72A3F49A900AD5B25 /* effect_symbol_table.cpp in Sources */,
 				5059C2872A38BC8F0049142A /* imgui.cpp in Sources */,
+				509366CD2A3F49A900AD5B25 /* effect_lexer.cpp in Sources */,
+				509366C52A3F49A900AD5B25 /* effect_preprocessor.cpp in Sources */,
+				509366AA2A3F474D00AD5B25 /* spirv_cross_c.cpp in Sources */,
+				509366A12A3F474D00AD5B25 /* spirv_cross.cpp in Sources */,
 				5059C2862A38BC850049142A /* imgui_impl_metal.mm in Sources */,
+				509366CB2A3F49A900AD5B25 /* effect_codegen_spirv.cpp in Sources */,
+				509366A02A3F474D00AD5B25 /* spirv_cross_util.cpp in Sources */,
+				509366D12A3F49A900AD5B25 /* effect_parser_exp.cpp in Sources */,
 				5059C1782A38B8A60049142A /* cimgui.cpp in Sources */,
 				505E2F5D2A34771C00D2F992 /* main.cpp in Sources */,
 				509815C72A36615100300CE9 /* fishhook.c in Sources */,
 				50BF6C832A35CE8600314C83 /* initialize.cpp in Sources */,
+				509366A42A3F474D00AD5B25 /* spirv_hlsl.cpp in Sources */,
+				509366A22A3F474D00AD5B25 /* spirv_parser.cpp in Sources */,
 				50BF6C7E2A35C3DE00314C83 /* utils.mm in Sources */,
 				505E2F652A3477BF00D2F992 /* logging.cpp in Sources */,
 				505E2F7B2A34A5FA00D2F992 /* CoreCLR.cpp in Sources */,
 				505E2F7A2A34A5FA00D2F992 /* boot.cpp in Sources */,
+				509366C12A3F49A900AD5B25 /* effect_expression.cpp in Sources */,
+				509366A32A3F474D00AD5B25 /* spirv_msl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1391,21 +1532,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				509366E82A40420500AD5B25 /* dobby.h in Sources */,
 				5096B6BA2A3A4A54003F2F84 /* imgui_impl_osx.mm in Sources */,
 				5059C2972A38BDE20049142A /* imgui_widgets.cpp in Sources */,
 				5059C2962A38BDDB0049142A /* imgui_tables.cpp in Sources */,
+				509366D02A3F49A900AD5B25 /* effect_parser_stmt.cpp in Sources */,
+				509366B12A3F476F00AD5B25 /* spirv_glsl.cpp in Sources */,
 				5059C2952A38BDD50049142A /* imgui_draw.cpp in Sources */,
+				509366AC2A3F475E00AD5B25 /* spirv_cpp.cpp in Sources */,
 				5059C2942A38BDCE0049142A /* imgui_demo.cpp in Sources */,
 				5059C2932A38BDC90049142A /* imgui.cpp in Sources */,
 				5059C2922A38BDBE0049142A /* imgui_impl_metal.mm in Sources */,
 				5059C1762A38B78A0049142A /* cimgui.cpp in Sources */,
 				505E2F912A34C49B00D2F992 /* CoreCLR.cpp in Sources */,
+				509366B22A3F477400AD5B25 /* spirv_hlsl.cpp in Sources */,
 				509815C82A36615100300CE9 /* fishhook.c in Sources */,
+				509366AD2A3F476200AD5B25 /* spirv_cross_c.cpp in Sources */,
+				509366CA2A3F49A900AD5B25 /* effect_codegen_hlsl.cpp in Sources */,
+				509366D22A3F49A900AD5B25 /* effect_parser_exp.cpp in Sources */,
 				50BF6C842A35CE8600314C83 /* initialize.cpp in Sources */,
+				509366AE2A3F476500AD5B25 /* spirv_cross_parsed_ir.cpp in Sources */,
+				509366AB2A3F475B00AD5B25 /* spirv_cfg.cpp in Sources */,
+				509366AF2A3F476800AD5B25 /* spirv_cross_util.cpp in Sources */,
 				50BF6C7F2A35C3DE00314C83 /* utils.mm in Sources */,
+				509366C62A3F49A900AD5B25 /* effect_preprocessor.cpp in Sources */,
+				509366C22A3F49A900AD5B25 /* effect_expression.cpp in Sources */,
+				509366B32A3F477700AD5B25 /* spirv_msl.cpp in Sources */,
+				509366B42A3F477A00AD5B25 /* spirv_parser.cpp in Sources */,
+				509366C42A3F49A900AD5B25 /* effect_codegen_glsl.cpp in Sources */,
+				509366B02A3F476B00AD5B25 /* spirv_cross.cpp in Sources */,
 				505E2F902A34C49600D2F992 /* boot.cpp in Sources */,
+				509366CE2A3F49A900AD5B25 /* effect_lexer.cpp in Sources */,
 				505E2F8F2A34C48C00D2F992 /* logging.cpp in Sources */,
+				509366B52A3F477E00AD5B25 /* spirv_reflect.cpp in Sources */,
+				509366CC2A3F49A900AD5B25 /* effect_codegen_spirv.cpp in Sources */,
 				50BF6C872A35CF4100314C83 /* lib_main.mm in Sources */,
+				509366C82A3F49A900AD5B25 /* effect_symbol_table.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1458,18 +1620,20 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/SPIRV-Cross";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1514,17 +1678,19 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/SPIRV-Cross";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1541,6 +1707,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
 					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
+					"$(PROJECT_DIR)/Aetherium.Boot/Dobby",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dezent.Aetherium.Boot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1559,6 +1726,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
 					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
+					"$(PROJECT_DIR)/Aetherium.Boot/Dobby",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dezent.Aetherium.Boot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1579,6 +1747,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
 					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
+					"$(PROJECT_DIR)/Aetherium.Boot/Dobby",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1599,6 +1768,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
 					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
+					"$(PROJECT_DIR)/Aetherium.Boot/Dobby",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
