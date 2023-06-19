@@ -9,4 +9,9 @@ public struct ObjectiveCMethod
 
     public Selector GetSelector() => ObjectiveCRuntime.method_getName(this);
     public string GetName() => GetSelector().Name;
+    public nint Implementation
+    {
+        set => ObjectiveCRuntime.method_setImplementation(this, value);
+        get => ObjectiveCRuntime.method_getImplementation(this);
+    }
 }

@@ -263,6 +263,18 @@ public static unsafe class ObjectiveCRuntime
 
     [DllImport(ObjCLibrary)]
     public static extern ObjCClass object_getClass(nint obj);
+    
+    [DllImport(ObjCLibrary)]
+    public static extern ObjectiveCMethod class_getInstanceMethod(ObjCClass cls, Selector name);
+    
+    [DllImport(ObjCLibrary)]
+    public static extern ObjectiveCMethod class_getClassMethod(ObjCClass cls, Selector name);
+    
+    [DllImport(ObjCLibrary)]
+    public static extern ObjectiveCMethod method_getImplementation(ObjectiveCMethod method);
+    
+    [DllImport(ObjCLibrary)]
+    public static extern ObjectiveCMethod method_setImplementation(ObjectiveCMethod method, nint imp);
 
     [DllImport(ObjCLibrary)]
     public static extern nint class_getProperty(ObjCClass cls, byte* namePtr);

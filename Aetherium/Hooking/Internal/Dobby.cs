@@ -103,25 +103,25 @@ internal static class Dobby
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void DobbyInstrumentCallback(nint address, ref DobbyRegisterContextARM64 ctx);
 
-    [DllImport("libDobby", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
     private static extern int DobbyCodePatch(nint address, byte[] buffer, uint bufferSize);
 
-    [DllImport("libDobby", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
     private static extern int DobbyHook(nint address, nint replaceFunc, ref nint originFunc);
 
-    [DllImport("libDobby", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
     private static extern int DobbyInstrument(nint address, DobbyInstrumentCallback preHandler);
 
-    [DllImport("libDobby", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
     private static extern int DobbyDestroy(nint address);
 
-    [DllImport("libDobby", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
     private static extern nint DobbyGetVersion();
 
-    [DllImport("libDobby", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
     private static extern nint DobbySymbolResolver([MarshalAs(UnmanagedType.LPStr)] string imageName, [MarshalAs(UnmanagedType.LPStr)] string symbolName);
 
-    [DllImport("libDobby", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
     private static extern int DobbyImportTableReplace([MarshalAs(UnmanagedType.LPStr)] string imageName, [MarshalAs(UnmanagedType.LPStr)] string symbolName,
                                                      nint fakeFunc, ref nint origFunc);
 

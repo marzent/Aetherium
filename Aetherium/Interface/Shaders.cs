@@ -2,6 +2,28 @@ namespace Aetherium.Interface;
 
 public static class Shaders
 {
+    public const string DEPTH_FRAG = """
+#include <metal_stdlib>
+using namespace metal;
+
+struct VertexOut
+{
+    float4 pos [[position]];
+    float2 texCoord;
+};
+
+fragment float4 visualizeDepth(VertexOut in [[stage_in]],
+    texture2d<float, access::read> depthTexture [[texture(0)]],
+    sampler s [[sampler(0)]]) 
+{
+    const float near = 0.1; // near plane distance
+    const float far = 100.0; // far plane distance
+    float depth = depthTexture.sample(s, in.texCoord).r;
+    depth = (2.0 * near) / (far + near - depth * (far - near)); // Linearize the depth
+    depth = (depth - near) / (far - near); // Normalize to [0,1]
+    return float4(depth, depth, depth, 1.0); // output the depth as grayscale
+}
+""";
     public const string MCG_FRAG = """
 #pragma clang diagnostic ignored "-Wmissing-prototypes"
 

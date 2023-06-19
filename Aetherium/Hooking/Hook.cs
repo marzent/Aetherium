@@ -118,6 +118,17 @@ public class Hook<T> : IDisposable, IAetheriumHook where T : Delegate
         
         return new DobbyHook<T>(procAddress, detour, Assembly.GetCallingAssembly());
     }
+    
+    /// <summary>
+    /// Creates a hook. Hooking address is by the ObjectiveC runtime.
+    /// The hook is not activated until Enable() method is called.
+    /// </summary>
+    /// <param name="moduleName">A name of the module currently loaded in the memory. (e.g. ws2_32.dll).</param>
+    /// <param name="exportName">A name of the exported function name (e.g. send).</param>
+    /// <param name="detour">Callback function. Delegate must have a same original function prototype.</param>
+    /// <returns>The hook with the supplied parameters.</returns>
+    public static Hook<T> FromObjCMethod(string className, string methodName, T detour) 
+        => new DobbyObjCHook<T>(className, methodName, detour, Assembly.GetCallingAssembly());
 
     /// <summary>
     /// Creates a hook. Hooking address is inferred by calling to GetProcAddress() function.

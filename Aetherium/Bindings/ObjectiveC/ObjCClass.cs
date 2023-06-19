@@ -32,6 +32,12 @@ public unsafe struct ObjCClass
 
         return ObjectiveCRuntime.class_getProperty(this, utf8BytesPtr);
     }
+    
+    public ObjectiveCMethod GetInstanceMethod(Selector selector) 
+        => ObjectiveCRuntime.class_getInstanceMethod(this, selector);
+    
+    public ObjectiveCMethod GetClassMethod(Selector selector) 
+        => ObjectiveCRuntime.class_getClassMethod(this, selector);
 
     public string Name => MTLUtil.GetUtf8String(ObjectiveCRuntime.class_getName(this));
 

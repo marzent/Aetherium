@@ -25,28 +25,31 @@ namespace Aetherium.Interface.Internal;
 internal class InterfaceManager : IDisposable, IServiceType
 {
     [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern bool ImGui_ImplMetal_Init(nint device);
+    private static extern bool ImGui_ImplMetal_Init(nint device);
 
     [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void ImGui_ImplMetal_NewFrame(nint renderPassDescriptor);
+    private static extern void ImGui_ImplMetal_NewFrame(nint renderPassDescriptor);
 
     [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void ImGui_ImplMetal_RenderDrawData(nint drawData, nint commandBuffer, nint commandEncoder);
+    private static extern void ImGui_ImplMetal_RenderDrawData(nint drawData, nint commandBuffer, nint commandEncoder);
 
     [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void ImGui_ImplMetal_DeInit();
+    private static extern void ImGui_ImplMetal_DeInit();
     
     [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern bool ImGui_ImplMacOS_Init(nint view);
+    private static extern bool ImGui_ImplMacOS_Init(nint view);
     
     [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void ImGui_ImplMacOS_DeInit();
+    private static extern void ImGui_ImplMacOS_DeInit();
     
     [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void ImGui_ImplMacOS_NewFrame(nint view);
+    private static extern void ImGui_ImplMacOS_NewFrame(nint view);
     
     [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void ImGui_ImplMacOS_NewViewportFrame();
+    private static extern void ImGui_ImplMacOS_NewViewportFrame();
+    
+    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl, EntryPoint = "getMainWindow")]
+    private static extern NSWindow GetMainWindow();
     
     private const float DefaultFontSizePt = 12.0f;
     private const float DefaultFontSizePx = DefaultFontSizePt * 4.0f / 3.0f;
@@ -56,34 +59,46 @@ internal class InterfaceManager : IDisposable, IServiceType
     public MTLDevice MetalDevice { get; }
     private MTLLibrary vertexLibrary;
     private MTLLibrary fragLibrary;
-    private NSView metalView;
+    private MTLTexture depthTexture;
+    private NSWindow mainWindow;
+    private NSView mainView;
     private MTLRenderPipelineState pipelineState;
     private MTLRenderPassDescriptor frameBufferDescriptor;
     private MTLSamplerState sampler;
     private bool shaderEnabled = true;
 
-    private Hook<MetalPresentDelegate> metalPresentHook;
-    private readonly Hook<InitWithFrameDelegate> initWithFrameHook;
+    private Hook<PresentDrawableDelegate> metalPresentHook;
     private Hook<NextDrawableDelegate> nextDrawableHook;
+    private readonly Hook<SetDepthTextureDelegate> setDepthTextureHook;
+    
+    private delegate void SetDepthTextureDelegate(nint id, Selector selector, MTLTexture texture);
+    private delegate void PresentDrawableDelegate(MTLCommandBuffer id, Selector selector, CAMetalDrawable drawable);
+    private delegate nint NextDrawableDelegate(CAMetalLayer id, Selector selector);
 
-    // can't access imgui IO before first present call
-    private bool lastWantCapture = false;
+    
+    private void SetDepthTextureDetour(nint id, Selector selector, MTLTexture texture)
+    {
+        setDepthTextureHook.Original(id, selector, texture);
+        if (!texture.IsNull)
+            depthTexture = texture;
+    }
 
     [ServiceManager.ServiceConstructor]
     private InterfaceManager()
     {
         MetalDevice = MTLDevice.MTLCreateSystemDefaultDevice();
-        metalView = new NSView(nint.Zero);
+        mainWindow = new NSWindow(nint.Zero);
+        mainView = new NSView(nint.Zero);
+        depthTexture = new MTLTexture(nint.Zero);
         frameBufferDescriptor = MTLRenderPassDescriptor.New();
         ImGui.CreateContext();
         ImGui_ImplMetal_Init(MetalDevice.NativePtr);
-        var viewInitAddress =
-            SigScanner.FindPattern(
-                "FF 83 01 D1 EB 2B 01 6D E9 23 02 6D F6 57 03 A9 F4 4F 04 A9 FD 7B 05 A9 FD 43 01 91 68 40 60 1E");
-        initWithFrameHook = Hook<InitWithFrameDelegate>.FromAddress(viewInitAddress, InitWithFrameDetour);
-        Log.Verbose($"View init address 0x{viewInitAddress.ToInt64():X}");
+        setDepthTextureHook =
+            Hook<SetDepthTextureDelegate>.FromObjCMethod("MTLRenderPassDepthAttachmentDescriptorInternal",
+                "setTexture:",
+                SetDepthTextureDetour);
         CheckViewportState();
-        initWithFrameHook.Enable();
+        setDepthTextureHook.Enable();
     }
 
     private float _exposure, _saturation = 1, _contrast = 1;
@@ -127,11 +142,7 @@ internal class InterfaceManager : IDisposable, IServiceType
         fragFunction.Release();
         pipelineDescriptor.Release();
     }
-
-    private delegate void MetalPresentDelegate(nint commandBuffer, nint drawable);
-    private delegate nint InitWithFrameDelegate(nint id, nint sel, nint cgRect);
-    private delegate nint NextDrawableDelegate(nint caLayerStruct);
-
+    
     /// <summary>
     /// This event gets called each frame to facilitate ImGui drawing.
     /// </summary>
@@ -145,7 +156,7 @@ internal class InterfaceManager : IDisposable, IServiceType
     /// <summary>
     /// Gets a value indicating whether the Aetherium interface ready to use.
     /// </summary>
-    public bool IsReady => metalView != nint.Zero;
+    public bool IsReady => mainView != nint.Zero;
 
     /// <summary>
     /// Gets or sets a value indicating whether or not Draw events should be dispatched.
@@ -252,23 +263,12 @@ internal class InterfaceManager : IDisposable, IServiceType
 
     private bool fixedFrameBuffer;
     
-    private nint NextDrawableDetour(nint caLayerStruct)
+    private nint NextDrawableDetour(CAMetalLayer caMetalLayer, Selector selector)
     {
-        if (fixedFrameBuffer) return nextDrawableHook.Original(caLayerStruct);
-        var metalLayerPtr = Util.Dereference(caLayerStruct + 8);
-        var metalLayer = new CAMetalLayer(metalLayerPtr);
-        metalLayer.framebufferOnly = false;
+        if (fixedFrameBuffer) return nextDrawableHook.Original(caMetalLayer, selector);
+        caMetalLayer.framebufferOnly = false;
         fixedFrameBuffer = true;
-        return nextDrawableHook.Original(caLayerStruct);
-    }
-    
-    private nint InitWithFrameDetour(nint id, nint sel, nint cgRect)
-    {
-        var viewControllerPtr = initWithFrameHook.Original(id, sel, cgRect);
-        metalView = new NSViewController(viewControllerPtr).View;
-        Log.Debug("Got MetalView {width}x{height}", metalView.frame.size.width, metalView.frame.size.height);
-        InitScene();
-        return viewControllerPtr;
+        return nextDrawableHook.Original(caMetalLayer, selector);
     }
 
     private void InitScene()
@@ -277,7 +277,7 @@ internal class InterfaceManager : IDisposable, IServiceType
         
         using (Timings.Start("IM Scene Init"))
         {
-            ImGui_ImplMacOS_Init(metalView);
+            ImGui_ImplMacOS_Init(mainView);
 
             var startInfo = Service<AetheriumStartInfo>.Get();
             var configuration = Service<AetheriumConfiguration>.Get();
@@ -380,17 +380,14 @@ internal class InterfaceManager : IDisposable, IServiceType
         frameBufferDescriptor =  renderPassDescriptor;
     }
 
-    private void PresentDetour(nint commandBufferPtr, nint drawablePtr)
+    private void PresentDetour(MTLCommandBuffer commandBuffer, Selector selector, CAMetalDrawable drawable)
     {
         if (!IsReady)
         {
-            metalPresentHook.Original(commandBufferPtr, drawablePtr);
+            metalPresentHook.Original(commandBuffer, selector, drawable);
             return;
         }
 
-        var commandBuffer = new MTLCommandBuffer(Util.Dereference(commandBufferPtr));
-        var drawable = new CAMetalDrawable(Util.Dereference(drawablePtr));
-        
         UpdateFramebufferDescriptor(drawable);
 
         if (shaderEnabled)
@@ -401,13 +398,13 @@ internal class InterfaceManager : IDisposable, IServiceType
             commandEncoder.setFragmentTexture(drawable.texture, 0);
             commandEncoder.setFragmentSamplerState(sampler, 0);
             
-            commandEncoder.drawPrimitives(MTLPrimitiveType.Triangle, 0, 6);
+            commandEncoder.drawPrimitives(MTLPrimitiveType.Triangle, 0, 3);
             commandEncoder.endEncoding();
         }
 
         RenderImGui(commandBuffer, drawable);
 
-        commandBuffer.presentDrawable(drawable);
+        metalPresentHook.Original(commandBuffer, selector, drawable);
 
         if (ImGui.GetIO().ConfigFlags.HasFlag(ImGuiConfigFlags.ViewportsEnable))
         {
@@ -419,12 +416,12 @@ internal class InterfaceManager : IDisposable, IServiceType
     private unsafe void RenderImGui(MTLCommandBuffer commandBuffer, CAMetalDrawable drawable)
     {
         var io = ImGui.GetIO();
-        io.DisplaySize.X = (float)metalView.bounds.size.width;
-        io.DisplaySize.Y = (float)metalView.bounds.size.height;
-        var framebufferScale = metalView.window?.screen.backingScaleFactor ?? NSScreen.mainScreen.backingScaleFactor;
+        io.DisplaySize.X = (float)mainView.bounds.size.width;
+        io.DisplaySize.Y = (float)mainView.bounds.size.height;
+        var framebufferScale = mainView.window?.screen.backingScaleFactor ?? NSScreen.mainScreen.backingScaleFactor;
         io.DisplayFramebufferScale = new Vector2(framebufferScale, framebufferScale);
         ImGui_ImplMetal_NewFrame(frameBufferDescriptor);
-        ImGui_ImplMacOS_NewFrame(metalView);
+        ImGui_ImplMacOS_NewFrame(mainView);
         ImGui.NewFrame();
         io.MouseDrawCursor = io.WantCaptureMouse;
         ImGui.Begin("Shaders");
@@ -455,7 +452,7 @@ internal class InterfaceManager : IDisposable, IServiceType
     {
         var configuration = Service<AetheriumConfiguration>.Get();
 
-        if (configuration.IsDisableViewport || metalView.window == null || ImGui.GetPlatformIO().Monitors.Size == 1)
+        if (configuration.IsDisableViewport || mainView.window == null || ImGui.GetPlatformIO().Monitors.Size == 1)
         {
             ImGui.GetIO().ConfigFlags &= ~ImGuiConfigFlags.ViewportsEnable;
             return;
@@ -481,15 +478,18 @@ internal class InterfaceManager : IDisposable, IServiceType
     [ServiceManager.CallWhenServicesReady]
     private void ContinueConstruction()
     {
-        var metalPresentAddr = SigScanner.FindPattern("00 00 40 f9 22 00 40 f9 28 61 03 f0 01 71 41 f9");
-        var nextDrawableAddr =
-            SigScanner.FindPattern(
-                "f8 5f bc a9 f6 57 01 a9 f4 4f 02 a9 fd 7b 03 a9 fd c3 00 91 f3 03 00 aa e5 37 9f 94");
+        Log.Information("Searching for game window...");
+        mainWindow = GetMainWindow();
+        mainView = mainWindow.contentView;
+        Log.Information("Found game window");
+        InitScene();
         Log.Verbose("===== P R E S E N T D R A W A B L E =====");
-        metalPresentHook = Hook<MetalPresentDelegate>.FromAddress(metalPresentAddr, PresentDetour);
-        nextDrawableHook = Hook<NextDrawableDelegate>.FromAddress(nextDrawableAddr, NextDrawableDetour);
-        Log.Verbose($"Metal present address 0x{metalPresentAddr.ToInt64():X}");
-        Log.Verbose($"Next drawable address 0x{nextDrawableAddr.ToInt64():X}");
+        metalPresentHook =
+            Hook<PresentDrawableDelegate>.FromObjCMethod("_MTLCommandBuffer", "presentDrawable:", PresentDetour);
+        nextDrawableHook =
+            Hook<NextDrawableDelegate>.FromObjCMethod("CAMetalLayer", "nextDrawable", NextDrawableDetour);
+        Log.Verbose($"Metal present address 0x{metalPresentHook.Address.ToInt64():X}");
+        Log.Verbose($"Next drawable address 0x{nextDrawableHook.Address.ToInt64():X}");
         LastImGuiIoPtr = ImGui.GetIO();
         CheckViewportState();
         Log.Verbose("Compiling shaders...");
