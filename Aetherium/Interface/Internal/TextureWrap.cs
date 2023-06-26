@@ -1,5 +1,5 @@
 ﻿using System;
-using Aetherium.Bindings.Metal;
+using Bindings.Metal;
 
 namespace Aetherium.Interface.Internal;
 

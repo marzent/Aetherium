@@ -1,6 +1,6 @@
 using System;
 using System.Reflection;
-using Aetherium.Bindings.ObjectiveC;
+using Bindings.ObjectiveC;
 
 namespace Aetherium.Hooking.Internal;
 

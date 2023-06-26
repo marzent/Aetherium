@@ -29,4 +29,9 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bindings\Bindings.csproj" />
+    <ProjectReference Include="..\ReShadeRuntime\ReShadeRuntime.csproj" />
+  </ItemGroup>
 </Project>

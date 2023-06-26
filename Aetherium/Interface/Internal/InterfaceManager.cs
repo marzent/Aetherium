@@ -5,8 +5,8 @@ using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Aetherium.Bindings.Metal;
-using Aetherium.Bindings.ObjectiveC;
+using Bindings.Metal;
+using Bindings.ObjectiveC;
 using Aetherium.Configuration.Internal;
 using Aetherium.Hooking;
 using Aetherium.Interface.Style;
@@ -14,7 +14,6 @@ using Aetherium.Interface.Components;
 using Aetherium.Utility.Timing;
 using ImGuiNET;
 using Serilog;
-using Util = Aetherium.Utility.Util;
 
 namespace Aetherium.Interface.Internal;
 

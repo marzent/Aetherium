@@ -5,6 +5,10 @@ VisualStudioVersion = 25.0.1705.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aetherium", "Aetherium.csproj", "{B0014DFF-D656-4224-A4AA-7757BD4B5A6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bindings", "..\Bindings\Bindings.csproj", "{57F0128C-A0A7-4E8B-9276-B0E034CF42FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReShadeRuntime", "..\ReShadeRuntime\ReShadeRuntime.csproj", "{817EC8A6-38BD-4A63-AF82-67BBEA88945F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{B0014DFF-D656-4224-A4AA-7757BD4B5A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0014DFF-D656-4224-A4AA-7757BD4B5A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0014DFF-D656-4224-A4AA-7757BD4B5A6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57F0128C-A0A7-4E8B-9276-B0E034CF42FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57F0128C-A0A7-4E8B-9276-B0E034CF42FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57F0128C-A0A7-4E8B-9276-B0E034CF42FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57F0128C-A0A7-4E8B-9276-B0E034CF42FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{817EC8A6-38BD-4A63-AF82-67BBEA88945F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{817EC8A6-38BD-4A63-AF82-67BBEA88945F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{817EC8A6-38BD-4A63-AF82-67BBEA88945F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{817EC8A6-38BD-4A63-AF82-67BBEA88945F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

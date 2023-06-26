@@ -5,13 +5,9 @@ using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using Aetherium;
 using Aetherium.Configuration.Internal;
-using Aetherium.Interface;
 using Aetherium.Interface.Animation.EasingFunctions;
 using Aetherium.Interface.Colors;
-using Aetherium.Interface.ImGuiFileDialog;
-using Aetherium.Interface.Internal;
 using Aetherium.Interface.Internal.ManagedAsserts;
 using Aetherium.Interface.Internal.Windows;
 using Aetherium.Interface.Internal.Windows.Settings;
@@ -21,7 +17,6 @@ using Aetherium.Interface.Style;
 using Aetherium.Interface.Windowing;
 using Aetherium.Logging.Internal;
 using ImGuiNET;
-using Serilog;
 using Serilog.Events;
 using Util = Aetherium.Utility.Util;
 
@@ -527,7 +522,7 @@ internal class AetheriumInterface : IDisposable, IServiceType
                     ImGui.BeginMenu($"W:{Util.FormatBytes(GC.GetTotalMemory(false))}", false);
 
                     var videoMem = Service<InterfaceManager>.Get().MetalDevice.currentAllocatedSize;
-                    ImGui.BeginMenu($"V:{Util.FormatBytes(videoMem)}", false);
+                    ImGui.BeginMenu($"V:{Util.FormatBytes((ulong)videoMem)}", false);
 
                     var procMem = Process.GetCurrentProcess().WorkingSet64;
                     ImGui.BeginMenu($"P:{Util.FormatBytes(procMem)}", false);
