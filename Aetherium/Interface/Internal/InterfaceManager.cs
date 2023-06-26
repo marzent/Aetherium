@@ -183,6 +183,11 @@ internal class InterfaceManager : IDisposable, IServiceType
     /// </summary>
     public void Dispose()
     {
+        setDepthTextureHook.Dispose();
+        
+        ImGui_ImplMacOS_DeInit();
+        ImGui_ImplMetal_DeInit();
+        ImGui.DestroyContext();
     }
 
 #nullable enable
@@ -416,6 +421,7 @@ internal class InterfaceManager : IDisposable, IServiceType
     private unsafe void RenderImGui(MTLCommandBuffer commandBuffer, CAMetalDrawable drawable)
     {
         var io = ImGui.GetIO();
+        LastImGuiIoPtr = io;
         io.DisplaySize.X = (float)mainView.bounds.size.width;
         io.DisplaySize.Y = (float)mainView.bounds.size.height;
         var framebufferScale = mainView.window?.screen.backingScaleFactor ?? NSScreen.mainScreen.backingScaleFactor;
