@@ -21,37 +21,37 @@ public struct MTLTextureDescriptor
         set => objc_msgSend(NativePtr, Selectors.setPixelFormat, (uint)value);
     }
 
-    public nuint width
+    public ulong width
     {
         get => UIntPtr_objc_msgSend(NativePtr, sel_width);
         set => objc_msgSend(NativePtr, sel_setWidth, value);
     }
 
-    public nuint height
+    public ulong height
     {
         get => UIntPtr_objc_msgSend(NativePtr, sel_height);
         set => objc_msgSend(NativePtr, sel_setHeight, value);
     }
 
-    public nuint depth
+    public ulong depth
     {
         get => UIntPtr_objc_msgSend(NativePtr, sel_depth);
         set => objc_msgSend(NativePtr, sel_setDepth, value);
     }
 
-    public nuint mipmapLevelCount
+    public ulong mipmapLevelCount
     {
         get => UIntPtr_objc_msgSend(NativePtr, sel_mipmapLevelCount);
         set => objc_msgSend(NativePtr, sel_setMipmapLevelCount, value);
     }
 
-    public nuint sampleCount
+    public ulong sampleCount
     {
         get => UIntPtr_objc_msgSend(NativePtr, sel_sampleCount);
         set => objc_msgSend(NativePtr, sel_setSampleCount, value);
     }
 
-    public nuint arrayLength
+    public ulong arrayLength
     {
         get => UIntPtr_objc_msgSend(NativePtr, sel_arrayLength);
         set => objc_msgSend(NativePtr, sel_setArrayLength, value);

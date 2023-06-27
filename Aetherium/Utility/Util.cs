@@ -34,8 +34,6 @@ public static class Util
     /// </summary>
     public static string AssemblyVersion { get; } = Assembly.GetAssembly(typeof(IServiceType))!.GetName().Version!.ToString();
 
-    public static unsafe nint Dereference(nint ptr) => new(*(long*)ptr);
-
     /// <summary>
     /// Check two byte arrays for equality.
     /// </summary>
