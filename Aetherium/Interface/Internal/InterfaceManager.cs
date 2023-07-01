@@ -13,6 +13,7 @@ using Aetherium.Interface.Style;
 using Aetherium.Interface.Components;
 using Aetherium.Utility.Timing;
 using ImGuiNET;
+using ReShadeRuntime;
 using Serilog;
 
 namespace Aetherium.Interface.Internal;
@@ -64,7 +65,9 @@ internal class InterfaceManager : IDisposable, IServiceType
     private MTLRenderPipelineState pipelineState;
     private MTLRenderPassDescriptor frameBufferDescriptor;
     private MTLSamplerState sampler;
-    private bool shaderEnabled = true;
+    private string shaderPath = "/Users/marc-aurel/Downloads/FXShaders-master/Shaders/MinimalColorGrading.fx";
+
+    private Runtime? reShadeRuntime;
 
     private Hook<PresentDrawableDelegate> metalPresentHook;
     private Hook<NextDrawableDelegate> nextDrawableHook;
@@ -125,7 +128,7 @@ internal class InterfaceManager : IDisposable, IServiceType
         constants.setConstantValuetypeatIndex(&constantValue99, MTLDataType.Float, 5);
 
         var constantValue101 = 2;
-        constants.setConstantValuetypeatIndex(&constantValue101, MTLDataType.Int, 6); 
+        constants.setConstantValuetypeatIndex(&constantValue101, MTLDataType.Int, 6);
         var vertexFunction = vertexLibrary.newFunctionWithNameConstantValues("F_PostProcessVS", constants);
         var fragFunction = fragLibrary.newFunctionWithNameConstantValues("F_MainPS", constants);
         constants.Release();
@@ -379,7 +382,6 @@ internal class InterfaceManager : IDisposable, IServiceType
         var colorAttachment = colorAttachments[0];
         colorAttachment.texture = drawable.texture;
         colorAttachment.loadAction = MTLLoadAction.Load;
-        colorAttachments[0] = colorAttachment;
         frameBufferDescriptor.Release();
         frameBufferDescriptor =  renderPassDescriptor;
     }
@@ -394,6 +396,10 @@ internal class InterfaceManager : IDisposable, IServiceType
 
         UpdateFramebufferDescriptor(drawable);
 
+        reShadeRuntime ??= new Runtime(MetalDevice);
+        reShadeRuntime.Render(commandBuffer, drawable.texture, depthTexture);
+        
+/*
         if (shaderEnabled)
         {
             var commandEncoder = commandBuffer.renderCommandEncoderWithDescriptor(frameBufferDescriptor);
@@ -405,7 +411,7 @@ internal class InterfaceManager : IDisposable, IServiceType
             commandEncoder.drawPrimitives(MTLPrimitiveType.Triangle, 0, 3);
             commandEncoder.endEncoding();
         }
-
+*/
         RenderImGui(commandBuffer, drawable);
 
         metalPresentHook.Original(commandBuffer, selector, drawable);
@@ -429,7 +435,14 @@ internal class InterfaceManager : IDisposable, IServiceType
         ImGui_ImplMacOS_NewFrame(mainView);
         ImGui.NewFrame();
         io.MouseDrawCursor = io.WantCaptureMouse;
-        ImGui.Begin("Shaders");
+        ImGui.SetNextWindowSize(new Vector2(500, 400));
+        ImGui.Begin("ReShade Runtime");
+        ImGui.InputText("Shader path", ref shaderPath, 1000);
+        if (ImGui.Button("Add"))
+        {
+            reShadeRuntime?.AddEffect(new FileInfo(shaderPath));
+        }
+        /*
         ImGui.Checkbox("MinimalColorGrading.fx", ref shaderEnabled);
         if (shaderEnabled)
         {
@@ -442,6 +455,7 @@ internal class InterfaceManager : IDisposable, IServiceType
             shaderColor = ImGuiComponents.ColorPickerWithPalette(1, "Color Filter", oldColor, ImGuiColorEditFlags.NoAlpha);
             if (shaderColor != oldColor) UpdatePipelineState();
         }
+        */
         ImGui.End();
         Draw();
         ImGui.Render();

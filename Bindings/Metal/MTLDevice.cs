@@ -12,7 +12,7 @@ public unsafe struct MTLDevice
     public static implicit operator nint(MTLDevice device) => device.NativePtr;
     public MTLDevice(nint nativePtr) => NativePtr = nativePtr;
 
-    public string name => string_objc_msgSend(NativePtr, sel_name);
+    public string? name => string_objc_msgSend(NativePtr, sel_name);
     public MTLSize maxThreadsPerThreadgroup
     {
         get

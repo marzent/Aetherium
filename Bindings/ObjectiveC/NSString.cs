@@ -8,6 +8,7 @@ public unsafe struct NSString
     public readonly nint NativePtr;
     public NSString(nint ptr) => NativePtr = ptr;
     public static implicit operator nint(NSString nss) => nss.NativePtr;
+    public void Release() => release(NativePtr);
 
     public static NSString New(string s)
     {
@@ -21,10 +22,11 @@ public unsafe struct NSString
         }
     }
 
-    public string GetValue()
+    public string? GetValue()
     {
+        if (NativePtr == nint.Zero) return null;
         byte* utf8Ptr = bytePtr_objc_msgSend(NativePtr, sel_utf8String);
-        return MTLUtil.GetUtf8String(utf8Ptr);
+        return utf8Ptr == (byte*)0 ? null : MTLUtil.GetUtf8String(utf8Ptr);
     }
 
     private static readonly ObjCClass s_class = new ObjCClass(nameof(NSString));

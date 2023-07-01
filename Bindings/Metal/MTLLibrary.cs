@@ -9,6 +9,26 @@ public struct MTLLibrary
 {
     public readonly nint NativePtr;
     public MTLLibrary(nint ptr) => NativePtr = ptr;
+    public void Release() => release(NativePtr);
+
+    public string[] FunctionNames
+    {
+        get
+        {
+            var array = objc_msgSend<NSArray>(NativePtr, sel_functionNames);
+            var count = (int)array.count;
+        
+            var result = new string[count];
+            for (var i = 0; i < count; ++i)
+            {
+                var nsString = new NSString(array.objectAtIndex(i));
+                result[i] = nsString.GetValue()!;
+            }
+            
+            return result;
+        }
+    }
+
 
     public MTLFunction newFunctionWithName(string name)
     {
@@ -36,7 +56,8 @@ public struct MTLLibrary
 
         return new MTLFunction(function);
     }
-
+    
+    private static readonly Selector sel_functionNames = "functionNames";
     private static readonly Selector sel_newFunctionWithName = "newFunctionWithName:";
     private static readonly Selector sel_newFunctionWithNameConstantValues = "newFunctionWithName:constantValues:error:";
 }

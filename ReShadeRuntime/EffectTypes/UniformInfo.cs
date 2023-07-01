@@ -35,7 +35,7 @@ internal class UniformInfo
         Size = cUniformInfo.size;
         Offset = cUniformInfo.offset;
         Annotations = Enumerable.Range(0, (int)cUniformInfo.annotations_size)
-            .Select(i => new Annotation(cUniformInfo.annotations + 8 * i))
+            .Select(i => new Annotation(Marshal.ReadIntPtr(cUniformInfo.annotations + 8 * i)))
             .ToArray();
         HasInitializerValue = cUniformInfo.has_initializer_value;
         InitializerValue = new Constant(cUniformInfo.initializer_value);

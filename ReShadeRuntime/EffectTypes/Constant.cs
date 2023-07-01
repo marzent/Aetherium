@@ -44,7 +44,7 @@ internal class Constant
         AsUints = cConstant.as_uint;
         StringData = cConstant.string_data;
         ArrayData = Enumerable.Range(0, (int)cConstant.array_size)
-            .Select(i => new Constant(cConstant.array_data + 8 * i))
+            .Select(i => new Constant(Marshal.ReadIntPtr(cConstant.array_data + 8 * i)))
             .ToArray();
     }
 }

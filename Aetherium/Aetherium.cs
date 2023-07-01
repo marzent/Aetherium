@@ -12,7 +12,7 @@ namespace Aetherium;
 
 public static class NativeMethods
 {
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
     public static extern void showAlert(string message, string info, string buttonTitle);
 }
 

@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using Bindings.Metal;
 
 namespace ReShadeRuntime.EffectTypes;
 
@@ -135,13 +136,24 @@ internal class PassInfo
     public PassStencilOp StencilOpPass { get; }
     public PassStencilOp StencilOpFail { get; }
     public PassStencilOp StencilOpDepthFail { get; }
-    public int NumVertices { get; }
+    public uint NumVertices { get; }
     public PrimitiveTopology Topology { get; }
     public int ViewportWidth { get; }
     public int ViewportHeight { get; }
     public int ViewportDispatchZ { get; }
     public SamplerInfo[] Samplers { get; }
     public StorageInfo[] Storages { get; }
+
+    public MTLPrimitiveType PrimitiveType =>
+        Topology switch
+        {
+            PrimitiveTopology.PointList => MTLPrimitiveType.Point,
+            PrimitiveTopology.LineList => MTLPrimitiveType.Line,
+            PrimitiveTopology.LineStrip => MTLPrimitiveType.LineStrip,
+            PrimitiveTopology.TriangleList => MTLPrimitiveType.Triangle,
+            PrimitiveTopology.TriangleStrip => MTLPrimitiveType.TriangleStrip,
+            _ => throw new ArgumentOutOfRangeException()
+        };
 
     public PassInfo(nint cStruct)
     {
@@ -170,16 +182,16 @@ internal class PassInfo
         StencilOpPass = cEntryPoint.stencil_op_pass;
         StencilOpFail = cEntryPoint.stencil_op_fail;
         StencilOpDepthFail = cEntryPoint.stencil_op_depth_fail;
-        NumVertices = (int)cEntryPoint.num_vertices;
+        NumVertices = cEntryPoint.num_vertices;
         Topology = cEntryPoint.topology;
         ViewportWidth = (int)cEntryPoint.viewport_width;
         ViewportHeight = (int)cEntryPoint.viewport_height;
         ViewportDispatchZ = (int)cEntryPoint.viewport_dispatch_z;
         Samplers = Enumerable.Range(0, (int)cEntryPoint.samplers_size)
-            .Select(i => new SamplerInfo(cEntryPoint.samplers + 8 * i))
+            .Select(i => new SamplerInfo(Marshal.ReadIntPtr(cEntryPoint.samplers + 8 * i)))
             .ToArray();
         Storages = Enumerable.Range(0, (int)cEntryPoint.storages_size)
-            .Select(i => new StorageInfo(cEntryPoint.storages + 8 * i))
+            .Select(i => new StorageInfo(Marshal.ReadIntPtr(cEntryPoint.storages + 8 * i)))
             .ToArray();
     }
 }

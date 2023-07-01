@@ -68,7 +68,7 @@ internal class TextureInfo
         Semantic = cTextureInfo.semantic;
         UniqueName = cTextureInfo.unique_name;
         Annotations = Enumerable.Range(0, (int)cTextureInfo.annotations_size)
-            .Select(i => new Annotation(cTextureInfo.annotations + 8 * i))
+            .Select(i => new Annotation(Marshal.ReadIntPtr(cTextureInfo.annotations + 8 * i)))
             .ToArray();
         Width = (int)cTextureInfo.width;
         Height = (int)cTextureInfo.height;

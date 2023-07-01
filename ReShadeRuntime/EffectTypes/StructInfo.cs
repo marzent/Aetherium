@@ -28,7 +28,7 @@ internal class StructInfo
         UniqueName = cStructInfo.unique_name;
         Definition = (int)cStructInfo.definition;
         MemberList = Enumerable.Range(0, (int)cStructInfo.member_list_size)
-            .Select(i => new StructMemberInfo(cStructInfo.member_list + 8 * i))
+            .Select(i => new StructMemberInfo(Marshal.ReadIntPtr(cStructInfo.member_list + 8 * i)))
             .ToArray();
     }
     

@@ -34,7 +34,7 @@ internal class Expression
         isLvalue = cExpression.is_lvalue;
         isConstant = cExpression.is_constant;
         Operations = Enumerable.Range(0, (int)cExpression.operations_chain_size)
-            .Select(i => new Operation(cExpression.operations_chain + 8 * i))
+            .Select(i => new Operation(Marshal.ReadIntPtr(cExpression.operations_chain + 8 * i)))
             .ToArray();
     }
     

@@ -142,7 +142,7 @@ internal class SamplerInfo
         UniqueName = cSamplerInfo.unique_name;
         TextureName = cSamplerInfo.texture_name;
         Annotations = Enumerable.Range(0, (int)cSamplerInfo.annotations_size)
-            .Select(i => new Annotation(cSamplerInfo.annotations + 8 * i))
+            .Select(i => new Annotation(Marshal.ReadIntPtr(cSamplerInfo.annotations + 8 * i)))
             .ToArray();
         Filter = cSamplerInfo.filter;
         AddressU = cSamplerInfo.address_u;

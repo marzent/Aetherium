@@ -8,6 +8,7 @@ public struct MTLTextureDescriptor
     private static readonly ObjCClass s_class = new ObjCClass(nameof(MTLTextureDescriptor));
     public readonly nint NativePtr;
     public static MTLTextureDescriptor New() => s_class.AllocInit<MTLTextureDescriptor>();
+    public void Release() => release(NativePtr);
 
     public MTLTextureType textureType
     {

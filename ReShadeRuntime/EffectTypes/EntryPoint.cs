@@ -21,7 +21,8 @@ internal class EntryPoint
     
     public string Name { get; }
     public ShaderType Type { get; }
-    
+    public string? MslCode { get; set; }
+
     public EntryPoint(nint cStruct)
     {
         var cEntryPoint = Marshal.PtrToStructure<CEntryPoint>(cStruct);

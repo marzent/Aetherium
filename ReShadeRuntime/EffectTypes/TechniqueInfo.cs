@@ -18,16 +18,20 @@ internal class TechniqueInfo
     public string Name { get; }
     public PassInfo[] Passes { get; }
     public Annotation[] Annotations { get; }
+    public bool Enabled { get; set; }
+    public int Priority { get; set; }
 
     public TechniqueInfo(nint cStruct)
     {
         var cEntryPoint = Marshal.PtrToStructure<CTechniqueInfo>(cStruct);
         Name = cEntryPoint.name;
+        Enabled = true;
+        Priority = 0;
         Passes = Enumerable.Range(0, (int)cEntryPoint.passes_size)
-            .Select(i => new PassInfo(cEntryPoint.passes + 8 * i))
+            .Select(i => new PassInfo(Marshal.ReadIntPtr(cEntryPoint.passes + 8 * i)))
             .ToArray();
         Annotations = Enumerable.Range(0, (int)cEntryPoint.annotations_size)
-            .Select(i => new Annotation(cEntryPoint.annotations + 8 * i))
+            .Select(i => new Annotation(Marshal.ReadIntPtr(cEntryPoint.annotations + 8 * i)))
             .ToArray();
     }
 }

@@ -11,6 +11,7 @@ public unsafe struct MTLTexture
 
     public MTLTexture(nint ptr) => NativePtr = ptr;
     public bool IsNull => NativePtr == nint.Zero;
+    public void Release() => release(NativePtr);
 
     public void replaceRegion(
         MTLRegion region,

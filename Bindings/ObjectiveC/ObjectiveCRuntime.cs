@@ -213,7 +213,7 @@ public static unsafe class ObjectiveCRuntime
         nint value = IntPtr_objc_msgSend(receiver, selector, a);
         return Unsafe.AsRef<T>(&value);
     }
-    public static string string_objc_msgSend(nint receiver, Selector selector)
+    public static string? string_objc_msgSend(nint receiver, Selector selector)
     {
         return objc_msgSend<NSString>(receiver, selector).GetValue();
     }
