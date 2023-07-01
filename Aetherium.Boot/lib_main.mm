@@ -12,6 +12,8 @@
 #include "utils.hpp"
 #include "imgui_impl_osx.h"
 #include "imgui_impl_metal.h"
+#include "reshade_runtime.hpp"
+#include "logging.hpp"
 
 __attribute__((constructor))
 int lib_main(int argc, char **argv) {
@@ -88,6 +90,33 @@ void ImGui_ImplMacOS_NewViewportFrame(){
             ImGui::RenderPlatformWindowsDefault();
         }
     });
+}
+
+__attribute__((visibility("default")))
+struct module *reShadeLoadEffect(const char *source_file, int effect_width, int effect_height) {
+    try {
+        return reshade_runtime::load_effect(std::filesystem::path(source_file), effect_width, effect_height);
+    }
+    catch (...) {
+        logging::E("An error loading the effect file {} has occured", source_file);
+        return NULL;
+    }
+}
+
+__attribute__((visibility("default")))
+void freeModule(struct module *module) {
+    free_module(module);
+}
+
+__attribute__((visibility("default")))
+char *spirvToMsl(char *spirv_data, long spirv_size, const char *entry_point, shader_type type) {
+    try {
+        return reshade_runtime::spirv_to_msl(spirv_data, spirv_size, entry_point, type);
+    }
+    catch (const std::exception& e) {
+        logging::E("Error: {} / {}", errno, e.what());
+        return NULL;
+    }
 }
 
 }

@@ -90,6 +90,9 @@
 		509815C92A36615100300CE9 /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = 509815C62A36615100300CE9 /* fishhook.h */; };
 		509815E32A3732FC00300CE9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509815E22A3732FC00300CE9 /* Cocoa.framework */; };
 		509815E42A37331400300CE9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509815E22A3732FC00300CE9 /* Cocoa.framework */; };
+		50B5FF662A433B9600BCD0BD /* c_effect.cpp in Headers */ = {isa = PBXBuildFile; fileRef = 50B5FF652A433B9600BCD0BD /* c_effect.cpp */; };
+		50B5FF6B2A43501600BCD0BD /* c_effect.h in Sources */ = {isa = PBXBuildFile; fileRef = 50B5FF6A2A43501600BCD0BD /* c_effect.h */; };
+		50B5FF6C2A43501600BCD0BD /* c_effect.h in Sources */ = {isa = PBXBuildFile; fileRef = 50B5FF6A2A43501600BCD0BD /* c_effect.h */; };
 		50BF6C7E2A35C3DE00314C83 /* utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C7C2A35C3DE00314C83 /* utils.mm */; };
 		50BF6C7F2A35C3DE00314C83 /* utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C7C2A35C3DE00314C83 /* utils.mm */; };
 		50BF6C832A35CE8600314C83 /* initialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C812A35CE8600314C83 /* initialize.cpp */; };
@@ -97,6 +100,11 @@
 		50BF6C872A35CF4100314C83 /* lib_main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C862A35CF4100314C83 /* lib_main.mm */; };
 		50BF6C952A35D54D00314C83 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50BF6C912A35D54D00314C83 /* libfmt.a */; };
 		50BF6C962A35D54D00314C83 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50BF6C912A35D54D00314C83 /* libfmt.a */; };
+		50EC90962A4B0DF8007E54DA /* c_effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B5FF652A433B9600BCD0BD /* c_effect.cpp */; };
+		50EC90972A4B0DFD007E54DA /* c_effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B5FF652A433B9600BCD0BD /* c_effect.cpp */; };
+		50EC909A2A4C2F20007E54DA /* reshade_runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EC90982A4C2F20007E54DA /* reshade_runtime.cpp */; };
+		50EC909B2A4C2F20007E54DA /* reshade_runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EC90982A4C2F20007E54DA /* reshade_runtime.cpp */; };
+		50EC909C2A4C2F20007E54DA /* reshade_runtime.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 50EC90992A4C2F20007E54DA /* reshade_runtime.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -424,6 +432,8 @@
 		509815C52A36615100300CE9 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
 		509815C62A36615100300CE9 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
 		509815E22A3732FC00300CE9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		50B5FF652A433B9600BCD0BD /* c_effect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = c_effect.cpp; path = reshade/source/c_effect.cpp; sourceTree = "<group>"; };
+		50B5FF6A2A43501600BCD0BD /* c_effect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = c_effect.h; path = reshade/source/c_effect.h; sourceTree = "<group>"; };
 		50BF6C7C2A35C3DE00314C83 /* utils.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = utils.mm; sourceTree = "<group>"; };
 		50BF6C7D2A35C3DE00314C83 /* utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
 		50BF6C812A35CE8600314C83 /* initialize.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = initialize.cpp; sourceTree = "<group>"; };
@@ -433,6 +443,8 @@
 		50BF6C902A35D54D00314C83 /* core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
 		50BF6C912A35D54D00314C83 /* libfmt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmt.a; sourceTree = "<group>"; };
 		50BF6C922A35D54D00314C83 /* format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = format.h; sourceTree = "<group>"; };
+		50EC90982A4C2F20007E54DA /* reshade_runtime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = reshade_runtime.cpp; sourceTree = "<group>"; };
+		50EC90992A4C2F20007E54DA /* reshade_runtime.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = reshade_runtime.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1241,6 +1253,8 @@
 				50BF6C8E2A35D54D00314C83 /* fmt */,
 				505E2F672A34817500D2F992 /* Aetherium.Boot.entitlements */,
 				505E2F5C2A34771C00D2F992 /* main.cpp */,
+				50EC90982A4C2F20007E54DA /* reshade_runtime.cpp */,
+				50EC90992A4C2F20007E54DA /* reshade_runtime.hpp */,
 				50BF6C862A35CF4100314C83 /* lib_main.mm */,
 				50BF6C822A35CE8600314C83 /* initialize.hpp */,
 				50BF6C812A35CE8600314C83 /* initialize.cpp */,
@@ -1317,16 +1331,18 @@
 			isa = PBXGroup;
 			children = (
 				509366D92A3F6D6D00AD5B25 /* effect_module.hpp */,
-				509366D72A3F4CBC00AD5B25 /* effect_preprocessor.hpp */,
+				50B5FF6A2A43501600BCD0BD /* c_effect.h */,
+				50B5FF652A433B9600BCD0BD /* c_effect.cpp */,
 				509366D52A3F4CAA00AD5B25 /* effect_codegen.hpp */,
-				509366D32A3F4C7E00AD5B25 /* effect_parser.hpp */,
 				509366B92A3F49A900AD5B25 /* effect_codegen_glsl.cpp */,
 				509366BC2A3F49A900AD5B25 /* effect_codegen_hlsl.cpp */,
 				509366BD2A3F49A900AD5B25 /* effect_codegen_spirv.cpp */,
 				509366B82A3F49A900AD5B25 /* effect_expression.cpp */,
 				509366BE2A3F49A900AD5B25 /* effect_lexer.cpp */,
+				509366D32A3F4C7E00AD5B25 /* effect_parser.hpp */,
 				509366C02A3F49A900AD5B25 /* effect_parser_exp.cpp */,
 				509366BF2A3F49A900AD5B25 /* effect_parser_stmt.cpp */,
+				509366D72A3F4CBC00AD5B25 /* effect_preprocessor.hpp */,
 				509366BA2A3F49A900AD5B25 /* effect_preprocessor.cpp */,
 				509366BB2A3F49A900AD5B25 /* effect_symbol_table.cpp */,
 			);
@@ -1372,9 +1388,11 @@
 				509366DA2A3F6D6D00AD5B25 /* effect_module.hpp in Headers */,
 				5059C1772A38B7A80049142A /* cimgui.h in Headers */,
 				509366D42A3F4C7E00AD5B25 /* effect_parser.hpp in Headers */,
+				50B5FF662A433B9600BCD0BD /* c_effect.cpp in Headers */,
 				509366D82A3F4CBC00AD5B25 /* effect_preprocessor.hpp in Headers */,
 				509366D62A3F4CAA00AD5B25 /* effect_codegen.hpp in Headers */,
 				509366E42A40380D00AD5B25 /* dobby.h in Headers */,
+				50EC909C2A4C2F20007E54DA /* reshade_runtime.hpp in Headers */,
 				509815C92A36615100300CE9 /* fishhook.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1491,6 +1509,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50EC90962A4B0DF8007E54DA /* c_effect.cpp in Sources */,
 				509366CF2A3F49A900AD5B25 /* effect_parser_stmt.cpp in Sources */,
 				509366A82A3F474D00AD5B25 /* spirv_cfg.cpp in Sources */,
 				509366C92A3F49A900AD5B25 /* effect_codegen_hlsl.cpp in Sources */,
@@ -1505,6 +1524,7 @@
 				509366A92A3F474D00AD5B25 /* spirv_glsl.cpp in Sources */,
 				509366C72A3F49A900AD5B25 /* effect_symbol_table.cpp in Sources */,
 				5059C2872A38BC8F0049142A /* imgui.cpp in Sources */,
+				50EC909A2A4C2F20007E54DA /* reshade_runtime.cpp in Sources */,
 				509366CD2A3F49A900AD5B25 /* effect_lexer.cpp in Sources */,
 				509366C52A3F49A900AD5B25 /* effect_preprocessor.cpp in Sources */,
 				509366AA2A3F474D00AD5B25 /* spirv_cross_c.cpp in Sources */,
@@ -1524,6 +1544,7 @@
 				505E2F7B2A34A5FA00D2F992 /* CoreCLR.cpp in Sources */,
 				505E2F7A2A34A5FA00D2F992 /* boot.cpp in Sources */,
 				509366C12A3F49A900AD5B25 /* effect_expression.cpp in Sources */,
+				50B5FF6B2A43501600BCD0BD /* c_effect.h in Sources */,
 				509366A32A3F474D00AD5B25 /* spirv_msl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1532,6 +1553,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50EC90972A4B0DFD007E54DA /* c_effect.cpp in Sources */,
 				509366E82A40420500AD5B25 /* dobby.h in Sources */,
 				5096B6BA2A3A4A54003F2F84 /* imgui_impl_osx.mm in Sources */,
 				5059C2972A38BDE20049142A /* imgui_widgets.cpp in Sources */,
@@ -1550,6 +1572,7 @@
 				509366AD2A3F476200AD5B25 /* spirv_cross_c.cpp in Sources */,
 				509366CA2A3F49A900AD5B25 /* effect_codegen_hlsl.cpp in Sources */,
 				509366D22A3F49A900AD5B25 /* effect_parser_exp.cpp in Sources */,
+				50EC909B2A4C2F20007E54DA /* reshade_runtime.cpp in Sources */,
 				50BF6C842A35CE8600314C83 /* initialize.cpp in Sources */,
 				509366AE2A3F476500AD5B25 /* spirv_cross_parsed_ir.cpp in Sources */,
 				509366AB2A3F475B00AD5B25 /* spirv_cfg.cpp in Sources */,
@@ -1560,6 +1583,7 @@
 				509366B32A3F477700AD5B25 /* spirv_msl.cpp in Sources */,
 				509366B42A3F477A00AD5B25 /* spirv_parser.cpp in Sources */,
 				509366C42A3F49A900AD5B25 /* effect_codegen_glsl.cpp in Sources */,
+				50B5FF6C2A43501600BCD0BD /* c_effect.h in Sources */,
 				509366B02A3F476B00AD5B25 /* spirv_cross.cpp in Sources */,
 				505E2F902A34C49600D2F992 /* boot.cpp in Sources */,
 				509366CE2A3F49A900AD5B25 /* effect_lexer.cpp in Sources */,
@@ -1587,7 +1611,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -1651,7 +1675,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;

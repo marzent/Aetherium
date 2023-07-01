@@ -53,7 +53,7 @@ void utils::showAlert(const char *message, const char *info, const char *buttonT
             [alert addButtonWithTitle:[NSString stringWithUTF8String:buttonTitle]];
         [alert runModal];
     } else {
-        dispatch_sync(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             showAlert(message, info, buttonTitle);
         });
     }
