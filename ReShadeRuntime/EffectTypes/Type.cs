@@ -3,7 +3,7 @@ using Bindings.Metal;
 
 namespace ReShadeRuntime.EffectTypes;
 
-internal class Type
+public class Type
 {
     public enum DataType
     {

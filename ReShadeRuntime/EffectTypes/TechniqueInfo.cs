@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 
 namespace ReShadeRuntime.EffectTypes;
 
-internal class TechniqueInfo
+public class TechniqueInfo
 {
     [StructLayout(LayoutKind.Sequential)]
     private struct CTechniqueInfo
@@ -16,7 +16,7 @@ internal class TechniqueInfo
     }
     
     public string Name { get; }
-    public PassInfo[] Passes { get; }
+    internal PassInfo[] Passes { get; }
     public Annotation[] Annotations { get; }
     public bool Enabled { get; set; }
     public int Priority { get; set; }

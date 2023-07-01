@@ -3,16 +3,16 @@ using Bindings.Metal;
 
 namespace ReShadeRuntime.EffectTypes;
 
-internal class Module
+internal partial class Module
 {
-    [DllImport("libc", CallingConvention = CallingConvention.Cdecl, EntryPoint = "free")]
-    private static extern void Free(nint pointer);
+    [LibraryImport("libc", EntryPoint = "free")]
+    private static partial void Free(nint pointer);
     
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl, EntryPoint = "freeModule")]
-    private static extern void FreeCModule(nint module);
+    [LibraryImport("libAetherium", EntryPoint = "freeModule")]
+    private static partial void FreeCModule(nint module);
     
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spirvToMsl")]
-    private static extern nint SpirvToMsl(nint spirvData, long spirvSize, string entryPoint, EntryPoint.ShaderType type);
+    [LibraryImport("libAetherium", EntryPoint = "spirvToMsl", StringMarshalling = StringMarshalling.Utf8)]
+    private static partial nint SpirvToMsl(nint spirvData, long spirvSize, string entryPoint, EntryPoint.ShaderType type);
 
     [StructLayout(LayoutKind.Sequential)]
     private struct CModule

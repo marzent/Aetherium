@@ -10,7 +10,6 @@ using Bindings.ObjectiveC;
 using Aetherium.Configuration.Internal;
 using Aetherium.Hooking;
 using Aetherium.Interface.Style;
-using Aetherium.Interface.Components;
 using Aetherium.Utility.Timing;
 using ImGuiNET;
 using ReShadeRuntime;
@@ -22,33 +21,35 @@ namespace Aetherium.Interface.Internal;
 /// This class manages interaction with the ImGui interface.
 /// </summary>
 [ServiceManager.BlockingEarlyLoadedService]
-internal class InterfaceManager : IDisposable, IServiceType
+internal partial class InterfaceManager : IDisposable, IServiceType
 {
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    private static extern bool ImGui_ImplMetal_Init(nint device);
+    [LibraryImport("libAetherium")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool ImGui_ImplMetal_Init(nint device);
 
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void ImGui_ImplMetal_NewFrame(nint renderPassDescriptor);
+    [LibraryImport("libAetherium")]
+    private static partial void ImGui_ImplMetal_NewFrame(nint renderPassDescriptor);
 
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void ImGui_ImplMetal_RenderDrawData(nint drawData, nint commandBuffer, nint commandEncoder);
+    [LibraryImport("libAetherium")]
+    private static partial void ImGui_ImplMetal_RenderDrawData(nint drawData, nint commandBuffer, nint commandEncoder);
 
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void ImGui_ImplMetal_DeInit();
+    [LibraryImport("libAetherium")]
+    private static partial void ImGui_ImplMetal_DeInit();
     
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    private static extern bool ImGui_ImplMacOS_Init(nint view);
+    [LibraryImport("libAetherium")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool ImGui_ImplMacOS_Init(nint view);
     
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void ImGui_ImplMacOS_DeInit();
+    [LibraryImport("libAetherium")]
+    private static partial void ImGui_ImplMacOS_DeInit();
     
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void ImGui_ImplMacOS_NewFrame(nint view);
+    [LibraryImport("libAetherium")]
+    private static partial void ImGui_ImplMacOS_NewFrame(nint view);
     
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void ImGui_ImplMacOS_NewViewportFrame();
+    [LibraryImport("libAetherium")]
+    private static partial void ImGui_ImplMacOS_NewViewportFrame();
     
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl, EntryPoint = "getMainWindow")]
+    [DllImport("libAetherium", EntryPoint = "getMainWindow")]
     private static extern NSWindow GetMainWindow();
     
     private const float DefaultFontSizePt = 12.0f;
@@ -57,17 +58,11 @@ internal class InterfaceManager : IDisposable, IServiceType
     public delegate void BuildUIDelegate();
 
     public MTLDevice MetalDevice { get; }
-    private MTLLibrary vertexLibrary;
-    private MTLLibrary fragLibrary;
     private MTLTexture depthTexture;
     private NSWindow mainWindow;
     private NSView mainView;
-    private MTLRenderPipelineState pipelineState;
-    private MTLRenderPassDescriptor frameBufferDescriptor;
-    private MTLSamplerState sampler;
-    private string shaderPath = "/Users/marc-aurel/Downloads/FXShaders-master/Shaders/MinimalColorGrading.fx";
 
-    private Runtime? reShadeRuntime;
+    public Runtime? ReShadeRuntime { get; private set; }
 
     private Hook<PresentDrawableDelegate> metalPresentHook;
     private Hook<NextDrawableDelegate> nextDrawableHook;
@@ -92,7 +87,6 @@ internal class InterfaceManager : IDisposable, IServiceType
         mainWindow = new NSWindow(nint.Zero);
         mainView = new NSView(nint.Zero);
         depthTexture = new MTLTexture(nint.Zero);
-        frameBufferDescriptor = MTLRenderPassDescriptor.New();
         ImGui.CreateContext();
         ImGui_ImplMetal_Init(MetalDevice.NativePtr);
         setDepthTextureHook =
@@ -103,48 +97,6 @@ internal class InterfaceManager : IDisposable, IServiceType
         setDepthTextureHook.Enable();
     }
 
-    private float _exposure, _saturation = 1, _contrast = 1;
-    private Vector4 shaderColor = new(1);
-    
-    private unsafe void UpdatePipelineState()
-    {
-        var constants = MTLFunctionConstantValues.New();
-        var exposure = _exposure;
-        constants.setConstantValuetypeatIndex(&exposure, MTLDataType.Float, 0);
-
-        var constantValue93 = shaderColor.X;
-        constants.setConstantValuetypeatIndex(&constantValue93, MTLDataType.Float, 1);
-
-        var constantValue94 = shaderColor.Y;
-        constants.setConstantValuetypeatIndex(&constantValue94, MTLDataType.Float, 2);
-
-        var constantValue95 = shaderColor.Z;
-        constants.setConstantValuetypeatIndex(&constantValue95, MTLDataType.Float, 3);
-
-        var saturation = _saturation;
-        constants.setConstantValuetypeatIndex(&saturation, MTLDataType.Float, 4);
-
-        var constantValue99 = _contrast;
-        constants.setConstantValuetypeatIndex(&constantValue99, MTLDataType.Float, 5);
-
-        var constantValue101 = 2;
-        constants.setConstantValuetypeatIndex(&constantValue101, MTLDataType.Int, 6);
-        var vertexFunction = vertexLibrary.newFunctionWithNameConstantValues("F_PostProcessVS", constants);
-        var fragFunction = fragLibrary.newFunctionWithNameConstantValues("F_MainPS", constants);
-        constants.Release();
-        var pipelineDescriptor = MTLRenderPipelineDescriptor.New();
-        pipelineDescriptor.vertexFunction = vertexFunction;
-        pipelineDescriptor.fragmentFunction = fragFunction;
-        var colorAttachment = pipelineDescriptor.colorAttachments[0];
-        colorAttachment.pixelFormat = MTLPixelFormat.BGRA8Unorm;
-        if (pipelineState.NativePtr != nint.Zero)
-            pipelineState.Release();
-        pipelineState = MetalDevice.newRenderPipelineStateWithDescriptor(pipelineDescriptor);
-        vertexFunction.Release();
-        fragFunction.Release();
-        pipelineDescriptor.Release();
-    }
-    
     /// <summary>
     /// This event gets called each frame to facilitate ImGui drawing.
     /// </summary>
@@ -374,17 +326,6 @@ internal class InterfaceManager : IDisposable, IServiceType
         
         Service<InterfaceManagerWithScene>.Provide(new InterfaceManagerWithScene(this));
     }
-    
-    private void UpdateFramebufferDescriptor(CAMetalDrawable drawable)
-    {
-        var renderPassDescriptor = MTLRenderPassDescriptor.New();
-        var colorAttachments = renderPassDescriptor.colorAttachments;
-        var colorAttachment = colorAttachments[0];
-        colorAttachment.texture = drawable.texture;
-        colorAttachment.loadAction = MTLLoadAction.Load;
-        frameBufferDescriptor.Release();
-        frameBufferDescriptor =  renderPassDescriptor;
-    }
 
     private void PresentDetour(MTLCommandBuffer commandBuffer, Selector selector, CAMetalDrawable drawable)
     {
@@ -394,10 +335,8 @@ internal class InterfaceManager : IDisposable, IServiceType
             return;
         }
 
-        UpdateFramebufferDescriptor(drawable);
-
-        reShadeRuntime ??= new Runtime(MetalDevice);
-        reShadeRuntime.Render(commandBuffer, drawable.texture, depthTexture);
+        ReShadeRuntime ??= new Runtime(MetalDevice);
+        ReShadeRuntime.Render(commandBuffer, drawable.texture, depthTexture);
         
 /*
         if (shaderEnabled)
@@ -425,45 +364,27 @@ internal class InterfaceManager : IDisposable, IServiceType
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private unsafe void RenderImGui(MTLCommandBuffer commandBuffer, CAMetalDrawable drawable)
     {
+        ImGuiHelpers.NewFrame();
         var io = ImGui.GetIO();
         LastImGuiIoPtr = io;
         io.DisplaySize.X = (float)mainView.bounds.size.width;
         io.DisplaySize.Y = (float)mainView.bounds.size.height;
         var framebufferScale = mainView.window?.screen.backingScaleFactor ?? NSScreen.mainScreen.backingScaleFactor;
         io.DisplayFramebufferScale = new Vector2(framebufferScale, framebufferScale);
-        ImGui_ImplMetal_NewFrame(frameBufferDescriptor);
+        var renderPassDescriptor = MTLRenderPassDescriptor.New();
+        var colorAttachment = renderPassDescriptor.colorAttachments[0];
+        colorAttachment.texture = drawable.texture;
+        colorAttachment.loadAction = MTLLoadAction.Load;
+        ImGui_ImplMetal_NewFrame(renderPassDescriptor);
         ImGui_ImplMacOS_NewFrame(mainView);
         ImGui.NewFrame();
         io.MouseDrawCursor = io.WantCaptureMouse;
-        ImGui.SetNextWindowSize(new Vector2(500, 400));
-        ImGui.Begin("ReShade Runtime");
-        ImGui.InputText("Shader path", ref shaderPath, 1000);
-        if (ImGui.Button("Add"))
-        {
-            reShadeRuntime?.AddEffect(new FileInfo(shaderPath));
-        }
-        /*
-        ImGui.Checkbox("MinimalColorGrading.fx", ref shaderEnabled);
-        if (shaderEnabled)
-        {
-            if (ImGui.SliderFloat("Exposure", ref _exposure, -3.0f, 3.0f, "%.2f")) UpdatePipelineState();
-            if (ImGui.SliderFloat("Saturation", ref _saturation, 0f, 2.0f, "%.2f")) UpdatePipelineState();
-            if (ImGui.SliderFloat("Contrast", ref _contrast, -0f, 2.0f, "%.2f")) UpdatePipelineState();
-            var oldColor = shaderColor;
-            ImGui.Text("Color:");
-            ImGui.SameLine();
-            shaderColor = ImGuiComponents.ColorPickerWithPalette(1, "Color Filter", oldColor, ImGuiColorEditFlags.NoAlpha);
-            if (shaderColor != oldColor) UpdatePipelineState();
-        }
-        */
-        ImGui.End();
         Draw();
         ImGui.Render();
         var drawData = ImGui.GetDrawData();
-        var renderEncoder = commandBuffer.renderCommandEncoderWithDescriptor(frameBufferDescriptor);
-        renderEncoder.pushDebugGroup(NSString.New("Dear ImGui rendering"));
+        var renderEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptor);
+        renderPassDescriptor.Release();
         ImGui_ImplMetal_RenderDrawData(new nint(drawData), commandBuffer.NativePtr, renderEncoder.NativePtr);
-        renderEncoder.popDebugGroup();
         renderEncoder.endEncoding();
     }
 
@@ -511,22 +432,6 @@ internal class InterfaceManager : IDisposable, IServiceType
         Log.Verbose($"Next drawable address 0x{nextDrawableHook.Address.ToInt64():X}");
         LastImGuiIoPtr = ImGui.GetIO();
         CheckViewportState();
-        Log.Verbose("Compiling shaders...");
-        var compileOptions = MTLCompileOptions.New();
-        vertexLibrary = MetalDevice.newLibraryWithSource(Shaders.MCG_VERTEX, compileOptions);
-        fragLibrary = MetalDevice.newLibraryWithSource(Shaders.MCG_FRAG, compileOptions);
-        compileOptions.Release();
-        var samplerDescriptor = MTLSamplerDescriptor.New();
-        samplerDescriptor.minFilter = MTLSamplerMinMagFilter.Nearest;
-        samplerDescriptor.magFilter = MTLSamplerMinMagFilter.Linear;
-        samplerDescriptor.sAddressMode = MTLSamplerAddressMode.ClampToZero;
-        samplerDescriptor.tAddressMode = MTLSamplerAddressMode.ClampToZero;
-        samplerDescriptor.lodMinClamp = 0;
-        samplerDescriptor.lodMaxClamp = float.MaxValue;
-        sampler = MetalDevice.newSamplerStateWithDescriptor(samplerDescriptor);
-        samplerDescriptor.Release();
-        UpdatePipelineState();
-        Log.Verbose("Done!");
         metalPresentHook.Enable();
         nextDrawableHook.Enable();
     }

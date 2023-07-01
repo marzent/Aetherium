@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 
 namespace ReShadeRuntime.EffectTypes;
 
-internal class Annotation
+public class Annotation
 {
     [StructLayout(LayoutKind.Sequential)]
     private struct CAnnotation

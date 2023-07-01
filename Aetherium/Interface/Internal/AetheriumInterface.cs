@@ -33,6 +33,7 @@ internal class AetheriumInterface : IDisposable, IServiceType
     private static readonly ModuleLog Log = new("AUI");
     
     private readonly ColorDemoWindow colorDemoWindow;
+    private readonly ReShadeWindow reShadeWindow;
     private readonly ComponentDemoWindow componentDemoWindow;
     private readonly ConsoleWindow consoleWindow;
     private readonly SettingsWindow settingsWindow;
@@ -67,6 +68,7 @@ internal class AetheriumInterface : IDisposable, IServiceType
         this.WindowSystem = new WindowSystem("AetheriumCore");
         
         this.colorDemoWindow = new ColorDemoWindow() { IsOpen = false };
+        this.reShadeWindow = new ReShadeWindow() { IsOpen = true };
         this.componentDemoWindow = new ComponentDemoWindow() { IsOpen = false };
         this.consoleWindow = new ConsoleWindow() { IsOpen = configuration.LogOpenAtStartup };
         this.settingsWindow = new SettingsWindow() { IsOpen = false };
@@ -74,6 +76,7 @@ internal class AetheriumInterface : IDisposable, IServiceType
         this.hitchSettingsWindow = new HitchSettingsWindow() { IsOpen = false };
 
         this.WindowSystem.AddWindow(this.colorDemoWindow);
+        this.WindowSystem.AddWindow(this.reShadeWindow);
         this.WindowSystem.AddWindow(this.componentDemoWindow);
         this.WindowSystem.AddWindow(this.consoleWindow);
         this.WindowSystem.AddWindow(this.settingsWindow);
@@ -125,6 +128,11 @@ internal class AetheriumInterface : IDisposable, IServiceType
     /// Opens the <see cref="ColorDemoWindow"/>.
     /// </summary>
     public void OpenColorsDemoWindow() => this.colorDemoWindow.IsOpen = true;
+    
+    /// <summary>
+    /// Opens the <see cref="ColorDemoWindow"/>.
+    /// </summary>
+    public void OpenReShadeWindow() => this.reShadeWindow.IsOpen = true;
 
     /// <summary>
     /// Opens the <see cref="ComponentDemoWindow"/>.
@@ -394,6 +402,11 @@ internal class AetheriumInterface : IDisposable, IServiceType
                     if (ImGui.MenuItem("Open Components Demo"))
                     {
                         this.OpenComponentDemoWindow();
+                    }
+                    
+                    if (ImGui.MenuItem("Open ReShade Runtime"))
+                    {
+                        this.OpenReShadeWindow();
                     }
 
                     if (ImGui.MenuItem("Open Colors Demo"))

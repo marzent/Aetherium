@@ -1,4 +1,5 @@
 using Bindings.Metal;
+using ReShadeRuntime.EffectTypes;
 
 namespace ReShadeRuntime;
 
@@ -22,6 +23,9 @@ public class Runtime
     
     private int EffectWidth => (int)(BackBuffer?.Width ?? 800);
     private int EffectHeight => (int)(BackBuffer?.Height ?? 600);
+    
+    public TechniqueInfo[] Techniques =>
+        Effects.SelectMany(effect => effect.Module.Techniques).OrderBy(tech => tech.Priority).ToArray();
 
     private Dictionary<string, MTLTexture> Textures { get; }
 

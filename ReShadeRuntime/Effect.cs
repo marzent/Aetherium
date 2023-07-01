@@ -5,16 +5,16 @@ using ReShadeRuntime.EffectTypes;
 
 namespace ReShadeRuntime;
 
-internal class Effect
+internal partial class Effect
 {
-    [DllImport("libAetherium", CallingConvention = CallingConvention.Cdecl, EntryPoint = "reShadeLoadEffect")]
-    private static extern nint UnmanagedLoadEffect(string sourceFile, int effectWidth, int effectHeight);
+    [LibraryImport("libAetherium", EntryPoint = "reShadeLoadEffect", StringMarshalling = StringMarshalling.Utf8)]
+    private static partial nint UnmanagedLoadEffect(string sourceFile, int effectWidth, int effectHeight);
 
     private FileSystemInfo EffectFile { get; }
 
     private MTLDevice Device { get; }
 
-    private Module Module { get; set; } = null!;
+    public Module Module { get; private set; } = null!;
 
     private Dictionary<string, MTLTexture> Textures { get; }
     
@@ -24,7 +24,7 @@ internal class Effect
 
     private Dictionary<string, MTLSamplerState> Samplers { get; }
 
-    private List<MTLRenderPipelineState> PipelineStates { get; set; }
+    private List<MTLRenderPipelineState> PipelineStates { get; }
 
     private Dictionary<string, MTLLibrary> Libraries { get; }
 
@@ -91,7 +91,7 @@ internal class Effect
             if (string.IsNullOrEmpty(entryPoint))
                 return null;
             var library = Libraries[entryPoint];
-            var libraryEntryPoint = library.FunctionNames.FirstOrDefault() ?? entryPoint;
+            var libraryEntryPoint = library.FunctionNames.First();
             return library.newFunctionWithNameConstantValues(libraryEntryPoint, constants);
         }
 
@@ -127,7 +127,7 @@ internal class Effect
                 for (var i = 0; i < 8; i++)
                 {
                     if (string.IsNullOrEmpty(passInfo.RenderTargetNames[i]) && !implicitBackBuffer)
-                        continue;
+                        break;
                     var texture = implicitBackBuffer ? BackBuffer : Textures[passInfo.RenderTargetNames[i]];
                     var colorAttachment = pipelineDescriptor.colorAttachments[(uint)i];
                     colorAttachment.blendingEnabled = new Bool8(passInfo.BlendEnable[i]);
@@ -171,7 +171,7 @@ internal class Effect
         UpdatePipelineStates(Module.Techniques);
     }
 
-    public void Render(MTLCommandBuffer commandBuffer)
+    internal void Render(MTLCommandBuffer commandBuffer)
     {
         using var pipelineState = PipelineStates.GetEnumerator();
         foreach (var techniqueInfo in Module.Techniques)
@@ -185,7 +185,7 @@ internal class Effect
                 for (var i = 0U; i < 8; i++)
                 {
                     if (string.IsNullOrEmpty(passInfo.RenderTargetNames[i]) && !implicitBackBuffer)
-                        continue;
+                        break;
                     var texture = implicitBackBuffer ? BackBuffer : Textures[passInfo.RenderTargetNames[i]];
                     var colorAttachment = colorAttachments[i];
                     colorAttachment.texture = texture;

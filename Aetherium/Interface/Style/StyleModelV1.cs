@@ -49,7 +49,7 @@ public class StyleModelV1 : StyleModel
         CellPadding = new Vector2(4, 2),
         TouchExtraPadding = new Vector2(0, 0),
         IndentSpacing = 21,
-        ScrollbarSize = 16,
+        ScrollbarSize = 14,
         ScrollbarRounding = 9,
         GrabMinSize = 13,
         GrabRounding = 3,

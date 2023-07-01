@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 
 namespace ReShadeRuntime.EffectTypes;
 
-internal class Constant
+public class Constant
 {
     [StructLayout(LayoutKind.Explicit)]
     private struct CConstant
@@ -19,14 +19,14 @@ internal class Constant
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
         public readonly uint[] as_uint;
 
-        [FieldOffset(16)]
+        [FieldOffset(64)]
         [MarshalAs(UnmanagedType.LPStr)]
         public readonly string string_data;
     
-        [FieldOffset(24)]
+        [FieldOffset(72)]
         public readonly nint array_data;
 
-        [FieldOffset(32)]
+        [FieldOffset(80)]
         public readonly ulong array_size;
     }
 

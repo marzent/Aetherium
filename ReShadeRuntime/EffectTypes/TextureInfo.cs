@@ -81,9 +81,9 @@ internal class TextureInfo
     public MTLTextureDescriptor ToDescriptor()
     {
         var textureDescriptor = MTLTextureDescriptor.New();
-        textureDescriptor.width = (ulong)Width;
-        textureDescriptor.height = (ulong)Height;
-        textureDescriptor.depth = Levels;
+        textureDescriptor.width = new nuint((uint)Width);
+        textureDescriptor.height = new nuint((uint)Height);
+        textureDescriptor.mipmapLevelCount = Levels;
 
         textureDescriptor.pixelFormat = Format switch
         {

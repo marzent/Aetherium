@@ -78,7 +78,6 @@ internal class SettingsWindow : Window
     public override void Draw()
     {
         var windowSize = ImGui.GetWindowSize();
-        return;
 
         if (ImGui.BeginTabBar("###settingsTabs"))
         {
