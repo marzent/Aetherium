@@ -5,22 +5,18 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-  <PropertyGroup>
+    <PlatformTarget>ARM64</PlatformTarget>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <OutputPath>$(MSBuildProjectDirectory)/../build/$(Configuration)</OutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>$(HOME)/Library/Application Support/Aetherium/bin</OutputPath>
-    <PlatformTarget>ARM64</PlatformTarget>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>$(HOME)/Library/Application Support/Aetherium/bin</OutputPath>
-    <PlatformTarget>ARM64</PlatformTarget>
-  </PropertyGroup>
+  <Target Name="Aetherium Boot" AfterTargets="Build">
+    <Exec Command="xcodebuild -project $(MSBuildProjectDirectory)/../Aetherium.Boot.xcodeproj
+                              -scheme Aetherium.Boot
+                              -configuration $(Configuration)
+                              CONFIGURATION_BUILD_DIR=$(OutputPath)" />
+  </Target>
 
   <ItemGroup>
     <PackageReference Include="CheapLoc" Version="1.1.8" />
