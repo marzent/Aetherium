@@ -9,13 +9,11 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <OutputPath>$(MSBuildProjectDirectory)/../build/$(Configuration)</OutputPath>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
 
-  <Target Name="Aetherium Boot" AfterTargets="Build">
-    <Exec Command="xcodebuild -project $(MSBuildProjectDirectory)/../Aetherium.Boot.xcodeproj
-                              -scheme Aetherium.Boot
-                              -configuration $(Configuration)
-                              CONFIGURATION_BUILD_DIR=$(OutputPath)" />
+  <Target Name="Aetherium Boot" AfterTargets="Build" Inputs="">
+    <Exec Command="xcodebuild -project $(MSBuildProjectDirectory)/../Aetherium.Boot.xcodeproj -target Aetherium -configuration $(Configuration) CONFIGURATION_BUILD_DIR=$(OutputPath)" />
   </Target>
 
   <ItemGroup>
