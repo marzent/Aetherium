@@ -3,9 +3,7 @@
 
 #include <filesystem>
 #include <string>
-
-#define FMT_HEADER_ONLY
-#include "fmt/format.h"
+#include <format>
 
 namespace logging {
     enum class Level : int {
@@ -109,7 +107,7 @@ namespace logging {
      */
     template<typename Arg, typename...Args>
     void print(Level level, const char* fmt, Arg&& arg1, Args&&...args) {
-        print(level, fmt::vformat(fmt, fmt::make_format_args(to_format_arg(std::forward<Arg>(arg1)), to_format_arg(std::forward<Args>(args))...)));
+        print(level, std::vformat(fmt, std::make_format_args(to_format_arg(std::forward<Arg>(arg1)), to_format_arg(std::forward<Args>(args))...)));
     }
 
     template<typename...Args> void V(Args&&...args) { print(Level::Verbose, std::forward<Args>(args)...); }

@@ -14,7 +14,7 @@
 namespace utils {
     std::filesystem::path get_executable_path();
     std::filesystem::path get_application_support_path();
-    vm_map_offset_t get_base_adress();
+    uint64_t get_base_adress();
     void showAlert(const char *message, const char *info, const char *buttonTitle);
 }
 

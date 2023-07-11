@@ -1,6 +1,7 @@
 #include <filesystem>
 #include <iostream>
 #include <dlfcn.h>
+#include <cassert>
 
 #include "CoreCLR.hpp"
 #include "logging.hpp"

@@ -90,6 +90,8 @@
 		509815C92A36615100300CE9 /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = 509815C62A36615100300CE9 /* fishhook.h */; };
 		509815E32A3732FC00300CE9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509815E22A3732FC00300CE9 /* Cocoa.framework */; };
 		509815E42A37331400300CE9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509815E22A3732FC00300CE9 /* Cocoa.framework */; };
+		50ABFCF02A5DED3700190D82 /* libc++experimental.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ABFCEF2A5DED3700190D82 /* libc++experimental.a */; };
+		50ABFCF12A5DED3700190D82 /* libc++experimental.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ABFCEF2A5DED3700190D82 /* libc++experimental.a */; };
 		50B5FF662A433B9600BCD0BD /* c_effect.cpp in Headers */ = {isa = PBXBuildFile; fileRef = 50B5FF652A433B9600BCD0BD /* c_effect.cpp */; };
 		50B5FF6B2A43501600BCD0BD /* c_effect.h in Sources */ = {isa = PBXBuildFile; fileRef = 50B5FF6A2A43501600BCD0BD /* c_effect.h */; };
 		50B5FF6C2A43501600BCD0BD /* c_effect.h in Sources */ = {isa = PBXBuildFile; fileRef = 50B5FF6A2A43501600BCD0BD /* c_effect.h */; };
@@ -98,8 +100,6 @@
 		50BF6C832A35CE8600314C83 /* initialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C812A35CE8600314C83 /* initialize.cpp */; };
 		50BF6C842A35CE8600314C83 /* initialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C812A35CE8600314C83 /* initialize.cpp */; };
 		50BF6C872A35CF4100314C83 /* lib_main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50BF6C862A35CF4100314C83 /* lib_main.mm */; };
-		50BF6C952A35D54D00314C83 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50BF6C912A35D54D00314C83 /* libfmt.a */; };
-		50BF6C962A35D54D00314C83 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50BF6C912A35D54D00314C83 /* libfmt.a */; };
 		50EC90962A4B0DF8007E54DA /* c_effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B5FF652A433B9600BCD0BD /* c_effect.cpp */; };
 		50EC90972A4B0DFD007E54DA /* c_effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B5FF652A433B9600BCD0BD /* c_effect.cpp */; };
 		50EC909A2A4C2F20007E54DA /* reshade_runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EC90982A4C2F20007E54DA /* reshade_runtime.cpp */; };
@@ -432,6 +432,8 @@
 		509815C52A36615100300CE9 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
 		509815C62A36615100300CE9 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
 		509815E22A3732FC00300CE9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		50ABFCED2A5DE3C700190D82 /* libc++experimental.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libc++experimental.a"; path = "usr/lib/libc++experimental.a"; sourceTree = SDKROOT; };
+		50ABFCEF2A5DED3700190D82 /* libc++experimental.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libc++experimental.a"; sourceTree = "<group>"; };
 		50B5FF652A433B9600BCD0BD /* c_effect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = c_effect.cpp; path = reshade/source/c_effect.cpp; sourceTree = "<group>"; };
 		50B5FF6A2A43501600BCD0BD /* c_effect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = c_effect.h; path = reshade/source/c_effect.h; sourceTree = "<group>"; };
 		50BF6C7C2A35C3DE00314C83 /* utils.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = utils.mm; sourceTree = "<group>"; };
@@ -439,10 +441,6 @@
 		50BF6C812A35CE8600314C83 /* initialize.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = initialize.cpp; sourceTree = "<group>"; };
 		50BF6C822A35CE8600314C83 /* initialize.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = initialize.hpp; sourceTree = "<group>"; };
 		50BF6C862A35CF4100314C83 /* lib_main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = lib_main.mm; sourceTree = "<group>"; };
-		50BF6C8F2A35D54D00314C83 /* format-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "format-inl.h"; sourceTree = "<group>"; };
-		50BF6C902A35D54D00314C83 /* core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
-		50BF6C912A35D54D00314C83 /* libfmt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfmt.a; sourceTree = "<group>"; };
-		50BF6C922A35D54D00314C83 /* format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = format.h; sourceTree = "<group>"; };
 		50EC90982A4C2F20007E54DA /* reshade_runtime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = reshade_runtime.cpp; sourceTree = "<group>"; };
 		50EC90992A4C2F20007E54DA /* reshade_runtime.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = reshade_runtime.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -452,8 +450,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50ABFCF02A5DED3700190D82 /* libc++experimental.a in Frameworks */,
 				5059C28F2A38BD3F0049142A /* QuartzCore.framework in Frameworks */,
-				50BF6C952A35D54D00314C83 /* libfmt.a in Frameworks */,
 				509366E62A40381800AD5B25 /* libdobby.a in Frameworks */,
 				505E2F942A34C64000D2F992 /* libnethost.a in Frameworks */,
 				5059C28D2A38BCCC0049142A /* Metal.framework in Frameworks */,
@@ -465,8 +463,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50ABFCF12A5DED3700190D82 /* libc++experimental.a in Frameworks */,
 				5059C2912A38BD8C0049142A /* QuartzCore.framework in Frameworks */,
-				50BF6C962A35D54D00314C83 /* libfmt.a in Frameworks */,
 				5096B6BC2A3A4A8B003F2F84 /* GameController.framework in Frameworks */,
 				505E2F952A34C64000D2F992 /* libnethost.a in Frameworks */,
 				5059C2902A38BD870049142A /* Metal.framework in Frameworks */,
@@ -1248,9 +1246,9 @@
 		505E2F5B2A34771C00D2F992 /* Aetherium.Boot */ = {
 			isa = PBXGroup;
 			children = (
+				50ABFCEF2A5DED3700190D82 /* libc++experimental.a */,
 				509366E22A4037CB00AD5B25 /* Dobby */,
 				509815C42A36615100300CE9 /* fishhook */,
-				50BF6C8E2A35D54D00314C83 /* fmt */,
 				505E2F672A34817500D2F992 /* Aetherium.Boot.entitlements */,
 				505E2F5C2A34771C00D2F992 /* main.cpp */,
 				50EC90982A4C2F20007E54DA /* reshade_runtime.cpp */,
@@ -1301,6 +1299,7 @@
 		505E2F7E2A34B79D00D2F992 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50ABFCED2A5DE3C700190D82 /* libc++experimental.a */,
 				5096B6BB2A3A4A8B003F2F84 /* GameController.framework */,
 				5059C28E2A38BD3F0049142A /* QuartzCore.framework */,
 				5059C28C2A38BCCC0049142A /* Metal.framework */,
@@ -1367,17 +1366,6 @@
 			path = fishhook;
 			sourceTree = "<group>";
 		};
-		50BF6C8E2A35D54D00314C83 /* fmt */ = {
-			isa = PBXGroup;
-			children = (
-				50BF6C8F2A35D54D00314C83 /* format-inl.h */,
-				50BF6C902A35D54D00314C83 /* core.h */,
-				50BF6C912A35D54D00314C83 /* libfmt.a */,
-				50BF6C922A35D54D00314C83 /* format.h */,
-			);
-			path = fmt;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1441,7 +1429,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					505E2F582A34771C00D2F992 = {
 						CreatedOnToolsVersion = 14.2;
@@ -1602,10 +1590,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = arm64;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1636,6 +1624,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1653,10 +1642,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/SPIRV-Cross";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-fexperimental-library",
+				);
 				OTHER_LDFLAGS = "-all_load";
 				SDKROOT = macosx;
 			};
@@ -1666,10 +1659,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = arm64;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1700,6 +1693,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -1711,9 +1705,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/SPIRV-Cross";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-fexperimental-library",
+				);
 				OTHER_LDFLAGS = "-all_load";
 				SDKROOT = macosx;
 			};
@@ -1730,8 +1729,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
-					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
 					"$(PROJECT_DIR)/Aetherium.Boot/Dobby",
+					"$(PROJECT_DIR)/Aetherium.Boot",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dezent.Aetherium.Boot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1749,8 +1748,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
-					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
 					"$(PROJECT_DIR)/Aetherium.Boot/Dobby",
+					"$(PROJECT_DIR)/Aetherium.Boot",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dezent.Aetherium.Boot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1770,8 +1769,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
-					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
 					"$(PROJECT_DIR)/Aetherium.Boot/Dobby",
+					"$(PROJECT_DIR)/Aetherium.Boot",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1791,8 +1790,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aetherium.Boot/CoreCLR/nethost",
-					"$(PROJECT_DIR)/Aetherium.Boot/fmt",
 					"$(PROJECT_DIR)/Aetherium.Boot/Dobby",
+					"$(PROJECT_DIR)/Aetherium.Boot",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

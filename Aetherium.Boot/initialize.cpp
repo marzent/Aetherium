@@ -55,7 +55,7 @@ int initialize(int argc, char **argv) {
     if (result != 0)
         return result;
 
-    using custom_component_entry_point_fn = void (CORECLR_DELEGATE_CALLTYPE*)(const char*, vm_map_offset_t);
+    using custom_component_entry_point_fn = void (CORECLR_DELEGATE_CALLTYPE*)(const char*, uint64_t);
     const auto entrypoint_fn = reinterpret_cast<custom_component_entry_point_fn>(entrypoint_vfn);
 
     // ============================== Aetherium ==================================== //

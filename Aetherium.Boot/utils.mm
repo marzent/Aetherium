@@ -27,7 +27,7 @@ std::filesystem::path utils::get_application_support_path() {
     return std::filesystem::path([applicationSupportDirectory UTF8String]);
 }
 
-vm_map_offset_t utils::get_base_adress() {
+uint64_t utils::get_base_adress() {
     mach_port_name_t task = current_task();
     vm_map_offset_t vmoffset;
     vm_map_size_t vmsize;

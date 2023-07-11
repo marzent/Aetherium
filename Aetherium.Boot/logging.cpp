@@ -86,25 +86,25 @@ void logging::print<char>(Level level, const char* s) {
     std::string estr;
     switch (level) {
         case Level::Verbose:
-            estr = fmt::format("[{:02}:{:02}:{:02} CPP/VRB] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
+            estr = std::format("[{:02}:{:02}:{:02} CPP/VRB] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
             break;
         case Level::Debug:
-            estr = fmt::format("[{:02}:{:02}:{:02} CPP/DBG] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
+            estr = std::format("[{:02}:{:02}:{:02} CPP/DBG] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
             break;
         case Level::Info:
-            estr = fmt::format("[{:02}:{:02}:{:02} CPP/INF] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
+            estr = std::format("[{:02}:{:02}:{:02} CPP/INF] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
             break;
         case Level::Warning:
-            estr = fmt::format("[{:02}:{:02}:{:02} CPP/WRN] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
+            estr = std::format("[{:02}:{:02}:{:02} CPP/WRN] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
             break;
         case Level::Error:
-            estr = fmt::format("[{:02}:{:02}:{:02} CPP/ERR] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
+            estr = std::format("[{:02}:{:02}:{:02} CPP/ERR] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
             break;
         case Level::Fatal:
-            estr = fmt::format("[{:02}:{:02}:{:02} CPP/FTL] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
+            estr = std::format("[{:02}:{:02}:{:02} CPP/FTL] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
             break;
         default:
-            estr = fmt::format("[{:02}:{:02}:{:02} CPP/???] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
+            estr = std::format("[{:02}:{:02}:{:02} CPP/???] {}\n", st->tm_hour, st->tm_min, st->tm_sec, s);
             break;
     }
 
