@@ -272,7 +272,7 @@ internal class ConsoleWindow : Window, IDisposable
                     ImGui.PushStyleColor(ImGuiCol.HeaderActive, this.GetColorForLogEventLevel(line.Level));
                     ImGui.PushStyleColor(ImGuiCol.HeaderHovered, this.GetColorForLogEventLevel(line.Level));
 
-                    ImGui.Selectable("###consolenull", true, ImGuiSelectableFlags.AllowItemOverlap | ImGuiSelectableFlags.SpanAllColumns);
+                    ImGui.Selectable("###consolenull", true, ImGuiSelectableFlags.AllowOverlap | ImGuiSelectableFlags.SpanAllColumns);
                     ImGui.SameLine();
 
                     ImGui.PopStyleColor(3);

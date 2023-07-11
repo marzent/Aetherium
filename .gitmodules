@@ -7,3 +7,6 @@
 [submodule "reshade"]
 	path = reshade
 	url = https://github.com/marzent/reshade
+[submodule "ImGui.NET"]
+	path = ImGui.NET
+	url = https://github.com/marzent/ImGui.NET
