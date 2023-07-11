@@ -24,8 +24,6 @@ internal partial class Effect
 
     private Dictionary<string, MTLSamplerState> Samplers { get; }
 
-    private List<MTLRenderPipelineState> PipelineStates { get; }
-
     private Dictionary<string, MTLLibrary> Libraries { get; }
 
     private void LoadSamplers(IEnumerable<SamplerInfo> samplerInfos)
@@ -50,7 +48,9 @@ internal partial class Effect
         ReleaseTextures();
         foreach (var textureInfo in textureInfos)
         {
-            var descriptor = textureInfo.ToDescriptor();
+            var sampler = Module.Samplers.FirstOrDefault(sampler => sampler.TextureName == textureInfo.UniqueName);
+            var srgb = (sampler?.Srgb ?? 0) != 0;
+            var descriptor = textureInfo.ToDescriptor(srgb);
             if (Textures.ContainsKey(textureInfo.UniqueName)) continue;
             Textures[textureInfo.UniqueName] = Device.newTextureWithDescriptor(descriptor);
             descriptor.Release();
@@ -83,71 +83,6 @@ internal partial class Effect
             library.Release();
         Libraries.Clear();
     }
-    
-    private void UpdatePipelineStates(IEnumerable<TechniqueInfo> techniqueInfos)
-    {
-        MTLFunction? BuildFunction(string entryPoint, MTLFunctionConstantValues constants)
-        {
-            if (string.IsNullOrEmpty(entryPoint))
-                return null;
-            var library = Libraries[entryPoint];
-            var libraryEntryPoint = library.FunctionNames.First();
-            return library.newFunctionWithNameConstantValues(libraryEntryPoint, constants);
-        }
-
-        ReleasePipelineStates();
-        
-        foreach (var techniqueInfo in techniqueInfos)
-        {
-            foreach (var passInfo in techniqueInfo.Passes)
-            {
-                var constants = MTLFunctionConstantValues.New();
-                for (var i = 0U; i < Module.SpecConstants.Length; i++)
-                {
-                    unsafe
-                    {
-                        var specConstant = Module.SpecConstants[i];
-                        fixed (int* value = specConstant.InitializerValue.AsInts)
-                        {
-                            constants.setConstantValuetypeatIndex(value, specConstant.Type.ToMTLDataType(),
-                                new nuint(i));
-                        }
-                    }
-                }
-                var vertexFunction = BuildFunction(passInfo.VertexShaderEntryPoint, constants);
-                var fragmentFunction = BuildFunction(passInfo.FragmentShaderEntryPoint, constants);
-                // var computeFunction = BuildFunction(passInfo.ComputeShaderEntryPoint, constants);
-                constants.Release();
-                var pipelineDescriptor = MTLRenderPipelineDescriptor.New();
-                if (vertexFunction.HasValue) pipelineDescriptor.vertexFunction = vertexFunction.Value;
-                if (fragmentFunction.HasValue) pipelineDescriptor.fragmentFunction = fragmentFunction.Value;
-                // TODO: compute shaders are special
-
-                var implicitBackBuffer = string.IsNullOrEmpty(passInfo.RenderTargetNames[0]);
-                for (var i = 0; i < 8; i++)
-                {
-                    if (string.IsNullOrEmpty(passInfo.RenderTargetNames[i]) && !implicitBackBuffer)
-                        break;
-                    var texture = implicitBackBuffer ? BackBuffer : Textures[passInfo.RenderTargetNames[i]];
-                    var colorAttachment = pipelineDescriptor.colorAttachments[(uint)i];
-                    colorAttachment.blendingEnabled = new Bool8(passInfo.BlendEnable[i]);
-                    colorAttachment.pixelFormat = texture.pixelFormat;
-                    //colorAttachment.writeMask = (MTLColorWriteMask)passInfo.ColorWriteMask[i];
-                    implicitBackBuffer = false;
-                }
-                PipelineStates.Add(Device.newRenderPipelineStateWithDescriptor(pipelineDescriptor));
-                vertexFunction?.Release();
-                fragmentFunction?.Release();
-                pipelineDescriptor.Release();
-            }
-        }
-    }
-
-    private void ReleasePipelineStates()
-    {
-        foreach (var state in PipelineStates) state.Release();
-        PipelineStates.Clear();
-    }
 
     public Effect(MTLDevice device, FileSystemInfo effectFile, Dictionary<string, MTLTexture> textures, int effectWidth,
         int effectHeight)
@@ -158,51 +93,23 @@ internal partial class Effect
         LoadedTextureNames = new List<string>();
         Samplers = new Dictionary<string, MTLSamplerState>();
         Libraries = new Dictionary<string, MTLLibrary>();
-        PipelineStates = new List<MTLRenderPipelineState>();
-        Reload(effectWidth, effectHeight);
+        ReloadFromDisk(effectWidth, effectHeight);
     }
-
-    public void Reload(int effectWidth, int effectHeight)
+    
+    public void ReloadFromDisk(int effectWidth, int effectHeight)
     {
         Module = new Module(UnmanagedLoadEffect(EffectFile.FullName, effectWidth, effectHeight));
+        foreach (var technique in Module.Techniques) 
+            technique.PassRenderInfo(Device, Libraries, Module.SpecConstants, Textures, Samplers);
+        Reload();
+    }
+
+    public void Reload()
+    {
         LoadSamplers(Module.Samplers);
         LoadTextures(Module.Textures);
         LoadShaders(Module.EntryPoints);
-        UpdatePipelineStates(Module.Techniques);
-    }
-
-    internal void Render(MTLCommandBuffer commandBuffer)
-    {
-        using var pipelineState = PipelineStates.GetEnumerator();
-        foreach (var techniqueInfo in Module.Techniques)
-        {
-            foreach (var passInfo in techniqueInfo.Passes)
-            {
-                pipelineState.MoveNext();
-                var descriptor = MTLRenderPassDescriptor.New();
-                var colorAttachments = descriptor.colorAttachments;
-                var implicitBackBuffer = string.IsNullOrEmpty(passInfo.RenderTargetNames[0]);
-                for (var i = 0U; i < 8; i++)
-                {
-                    if (string.IsNullOrEmpty(passInfo.RenderTargetNames[i]) && !implicitBackBuffer)
-                        break;
-                    var texture = implicitBackBuffer ? BackBuffer : Textures[passInfo.RenderTargetNames[i]];
-                    var colorAttachment = colorAttachments[i];
-                    colorAttachment.texture = texture;
-                    colorAttachment.loadAction = passInfo.ClearRenderTargets == 0 ? MTLLoadAction.Load : MTLLoadAction.Clear;
-                    //colorAttachment.writeMask = (MTLColorWriteMask)passInfo.ColorWriteMask[i];
-                    implicitBackBuffer = false;
-                }
-                var commandEncoder = commandBuffer.renderCommandEncoderWithDescriptor(descriptor);
-                commandEncoder.setRenderPipelineState(pipelineState.Current);
-                for (var i = 0U; i < passInfo.Samplers.Length; i++)
-                {
-                    commandEncoder.setFragmentTexture(Textures[passInfo.Samplers[i].TextureName], new nuint(i));
-                    commandEncoder.setFragmentSamplerState(Samplers[passInfo.Samplers[i].UniqueName], new nuint(i));
-                }
-                commandEncoder.drawPrimitives(passInfo.PrimitiveType, 0, new nuint(passInfo.NumVertices));
-                commandEncoder.endEncoding();
-            }
-        }
+        foreach (var technique in Module.Techniques) 
+            technique.UpdatePipelineStates();
     }
 }

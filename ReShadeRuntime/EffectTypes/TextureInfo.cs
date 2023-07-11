@@ -77,15 +77,31 @@ internal class TextureInfo
         RenderTarget = cTextureInfo.render_target;
         StorageAccess = cTextureInfo.storage_access;
     }
-    
-    public MTLTextureDescriptor ToDescriptor()
-    {
-        var textureDescriptor = MTLTextureDescriptor.New();
-        textureDescriptor.width = new nuint((uint)Width);
-        textureDescriptor.height = new nuint((uint)Height);
-        textureDescriptor.mipmapLevelCount = Levels;
 
-        textureDescriptor.pixelFormat = Format switch
+    private MTLPixelFormat ConvertTextureFormat(bool srgb)
+    {
+        if (srgb) // best effort
+        {
+            return Format switch
+            {
+                TextureFormat.R8 => MTLPixelFormat.R8Unorm_sRGB,
+                TextureFormat.R16 => MTLPixelFormat.R16Unorm,
+                TextureFormat.R16F => MTLPixelFormat.R16Float,
+                TextureFormat.R32F => MTLPixelFormat.R32Float,
+                TextureFormat.RG8 => MTLPixelFormat.RG8Unorm_sRGB,
+                TextureFormat.RG16 => MTLPixelFormat.RG16Unorm,
+                TextureFormat.RG16F => MTLPixelFormat.RG16Float,
+                TextureFormat.RG32F => MTLPixelFormat.RG32Float,
+                TextureFormat.RGBA8 => MTLPixelFormat.RGBA8Unorm_sRGB,
+                TextureFormat.RGBA16 => MTLPixelFormat.RGBA16Unorm,
+                TextureFormat.RGBA16F => MTLPixelFormat.RGBA16Float,
+                TextureFormat.RGBA32F => MTLPixelFormat.RGBA32Float,
+                TextureFormat.RGB10A2 => MTLPixelFormat.RGB10A2Unorm,
+                _ => MTLPixelFormat.RGBA8Unorm_sRGB
+            };
+        }
+        
+        return Format switch
         {
             TextureFormat.R8 => MTLPixelFormat.R8Unorm,
             TextureFormat.R16 => MTLPixelFormat.R16Unorm,
@@ -102,6 +118,16 @@ internal class TextureInfo
             TextureFormat.RGB10A2 => MTLPixelFormat.RGB10A2Unorm,
             _ => MTLPixelFormat.RGBA8Unorm
         };
+    }
+    
+    public MTLTextureDescriptor ToDescriptor(bool srgb)
+    {
+        var textureDescriptor = MTLTextureDescriptor.New();
+        textureDescriptor.width = new nuint((uint)Width);
+        textureDescriptor.height = new nuint((uint)Height);
+        textureDescriptor.mipmapLevelCount = Levels;
+
+        textureDescriptor.pixelFormat = ConvertTextureFormat(srgb);
 
         textureDescriptor.textureUsage = MTLTextureUsage.ShaderRead;
         if (RenderTarget) textureDescriptor.textureUsage |= MTLTextureUsage.RenderTarget;

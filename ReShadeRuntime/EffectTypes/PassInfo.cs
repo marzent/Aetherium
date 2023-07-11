@@ -13,6 +13,17 @@ internal class PassInfo
         Min,
         Max
     }
+    
+    public static MTLBlendOperation ConvertToMTLBlendOperation(PassBlendOp blendOp) =>
+        blendOp switch
+        {
+            PassBlendOp.Add => MTLBlendOperation.Add,
+            PassBlendOp.Subtract => MTLBlendOperation.Subtract,
+            PassBlendOp.ReverseSubtract => MTLBlendOperation.ReverseSubtract,
+            PassBlendOp.Min => MTLBlendOperation.Min,
+            PassBlendOp.Max => MTLBlendOperation.Max,
+            _ => throw new ArgumentException("Invalid blend operation")
+        };
 
     public enum PassBlendFunc
     {
@@ -27,6 +38,22 @@ internal class PassInfo
         InvDstColor,
         InvDstAlpha
     }
+    
+    public static MTLBlendFactor ConvertToMTLBlendFactor(PassBlendFunc blendFunc) =>
+        blendFunc switch
+        {
+            PassBlendFunc.Zero => MTLBlendFactor.Zero,
+            PassBlendFunc.One => MTLBlendFactor.One,
+            PassBlendFunc.SrcColor => MTLBlendFactor.SourceColor,
+            PassBlendFunc.SrcAlpha => MTLBlendFactor.SourceAlpha,
+            PassBlendFunc.InvSrcColor => MTLBlendFactor.OneMinusSourceColor,
+            PassBlendFunc.InvSrcAlpha => MTLBlendFactor.OneMinusSourceAlpha,
+            PassBlendFunc.DstColor => MTLBlendFactor.DestinationColor,
+            PassBlendFunc.DstAlpha => MTLBlendFactor.DestinationAlpha,
+            PassBlendFunc.InvDstColor => MTLBlendFactor.OneMinusDestinationColor,
+            PassBlendFunc.InvDstAlpha => MTLBlendFactor.OneMinusDestinationAlpha,
+            _ => throw new ArgumentException("Invalid blend function")
+        };
 
     public enum PassStencilOp
     {
@@ -39,6 +66,23 @@ internal class PassInfo
         Decr,
         DecrSat
     }
+    
+    public static MTLStencilOperation ConvertToMTLStencilOperation(PassStencilOp stencilOp)
+    {
+        return stencilOp switch
+        {
+            PassStencilOp.Zero => MTLStencilOperation.Zero,
+            PassStencilOp.Keep => MTLStencilOperation.Keep,
+            PassStencilOp.Invert => MTLStencilOperation.Invert,
+            PassStencilOp.Replace => MTLStencilOperation.Replace,
+            PassStencilOp.Incr => MTLStencilOperation.IncrementWrap,
+            PassStencilOp.IncrSat => MTLStencilOperation.IncrementClamp,
+            PassStencilOp.Decr => MTLStencilOperation.DecrementWrap,
+            PassStencilOp.DecrSat => MTLStencilOperation.DecrementClamp,
+            _ => throw new ArgumentException("Invalid stencil operation")
+        };
+    }
+
 
     public enum PassStencilFunc
     {
@@ -50,6 +94,22 @@ internal class PassInfo
         Greater,
         GreaterEqual,
         Always
+    }
+    
+    public static MTLCompareFunction ConvertToMTLCompareFunction(PassStencilFunc stencilFunc)
+    {
+        return stencilFunc switch
+        {
+            PassStencilFunc.Never => MTLCompareFunction.Never,
+            PassStencilFunc.Less => MTLCompareFunction.Less,
+            PassStencilFunc.Equal => MTLCompareFunction.Equal,
+            PassStencilFunc.NotEqual => MTLCompareFunction.NotEqual,
+            PassStencilFunc.LessEqual => MTLCompareFunction.LessEqual,
+            PassStencilFunc.Greater => MTLCompareFunction.Greater,
+            PassStencilFunc.GreaterEqual => MTLCompareFunction.GreaterEqual,
+            PassStencilFunc.Always => MTLCompareFunction.Always,
+            _ => throw new ArgumentException("Invalid stencil function")
+        };
     }
 
     public enum PrimitiveTopology

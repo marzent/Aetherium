@@ -1,5 +1,4 @@
 using System.Runtime.InteropServices;
-using Bindings.Metal;
 
 namespace ReShadeRuntime.EffectTypes;
 
@@ -46,7 +45,7 @@ internal partial class Module
     public StorageInfo[] Storages { get; }
     public UniformInfo[] Uniforms { get; }
     public UniformInfo[] SpecConstants { get; }
-    public TechniqueInfo[] Techniques { get; }
+    public TechniqueInfo[] Techniques { get; private set; }
     public int TotalUniformSize { get; }
     public int NumTextureBindings { get; }
     public int NumSamplerBindings { get; }
@@ -76,7 +75,7 @@ internal partial class Module
             .Select(i => new UniformInfo(Marshal.ReadIntPtr(cModule.spec_constants + 8 * i)))
             .ToArray();
         Techniques = Enumerable.Range(0, (int)cModule.techniques_size)
-            .Select(i => new TechniqueInfo(Marshal.ReadIntPtr(cModule.techniques + 8 * i)))
+            .Select(i => new TechniqueInfo(Marshal.ReadIntPtr(cModule.techniques + 8 * i), i))
             .ToArray();
         TotalUniformSize = (int)cModule.total_uniform_size;
         NumTextureBindings = (int)cModule.num_texture_bindings;
