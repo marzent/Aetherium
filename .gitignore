@@ -338,3 +338,7 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# Aetherium.Boot compiled output
+libAetherium.dylib
+libAetherium.dylib.dSYM/
